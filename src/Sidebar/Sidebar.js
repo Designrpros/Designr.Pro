@@ -56,7 +56,8 @@ const LoginButton = styled.button`
 `;
 
 
-const Sidebar = ({ isOpen, toggleSidebar }) => {
+const Sidebar = ({ isOpen, toggleSidebar, handleLoginClick, isLoggedIn }) => {
+
   const ref = useRef();
 
   useEffect(() => {
@@ -75,16 +76,29 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
 
   return (
     <Aside isOpen={isOpen} ref={ref}>
-      <LoginButton>
-        <FaUserCircle size={50} />
-        Logged In
-      </LoginButton>
+      {isLoggedIn ? (
+        <LoginButton>
+          <FaUserCircle size={50} />
+          Logged In As User
+        </LoginButton>
+      ) : (
+        <LoginButton onClick={handleLoginClick}>
+          <FaUserCircle size={50} />
+          Not Logged In
+        </LoginButton>
+      )}
+
+
       <List>
         <li><Link to="/" onClick={toggleSidebar}><FaHome /> Home</Link></li>
         <li><Link to="/about" onClick={toggleSidebar}><BsFillPersonFill />  About</Link></li>
         <li><Link to="/contact" onClick={toggleSidebar}><FaEnvelope />  Contact</Link></li>
         <br />
+        <li><Link to="/nomad" onClick={toggleSidebar}><FaNotesMedical />  Nomad</Link></li>
+        <br />
         <li><Link to="/note" onClick={toggleSidebar}><FaNotesMedical />  Note</Link></li>
+        <li><Link to="/sketch" onClick={toggleSidebar}><FaNotesMedical />  Sketch</Link></li>
+        <li><Link to="/mindnode" onClick={toggleSidebar}><FaNotesMedical />  MindNode</Link></li>
       </List>
     </Aside>
   );

@@ -56,12 +56,12 @@ const SocialIconsContainer = styled.div`
   margin-bottom: 10px;
 `;
 
-const Modal = ({ children }) => {
+const Modal = ({ closeModal }) => {
   const [view, setView] = useState('login'); // 'login' or 'signup'
 
   const handleOutsideClick = (e) => {
     if (e.target.id === 'modal-overlay') {
-      // Close the modal
+        closeModal();// Close the modal
     }
   };
 
