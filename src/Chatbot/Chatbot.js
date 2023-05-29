@@ -8,15 +8,14 @@ const ChatbotContainer = styled.div`
   right: 20px;
   width: 300px;
   height: 400px;
-  background-color: #fff;
+  background-color: #333;
   border-radius: 10px;
   padding: 20px;
   box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
   display: flex;
   flex-direction: column;
+  zindex: 999;
 `;
-
-
 
 const MessagesContainer = styled.div`
   flex-grow: 1;
@@ -25,6 +24,7 @@ const MessagesContainer = styled.div`
 
 const Message = styled.p`
   margin-bottom: 10px;
+  color: #fff;
 `;
 
 const InputContainer = styled.div`
@@ -36,6 +36,7 @@ const Input = styled.input`
   flex-grow: 1;
   padding: 10px;
   border-radius: 5px;
+  background-color: #fff;
 `;
 
 const SendButton = styled.button`

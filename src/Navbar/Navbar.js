@@ -2,6 +2,9 @@ import React from 'react';
 import styled from 'styled-components';
 import { Link as RouterLink } from 'react-router-dom';
 import { FaBars, FaGithub, FaInstagram, FaLinkedin } from 'react-icons/fa';
+import { IoIosLogIn } from 'react-icons/io';
+
+
 
 const StyledIcon = styled(FaBars)`
   color: black;
@@ -35,7 +38,15 @@ const StyledInstagram = styled(FaInstagram)`
 
 const StyledLinkedin = styled(FaLinkedin)`
   color: black;
-  margin-right: 15px;
+  font-size: 1.5em;
+
+  &:hover {
+    color: #ddd;
+  }
+`;
+
+const StyledLogedIn = styled(IoIosLogIn)`
+  color: white;
   font-size: 1.5em;
 
   &:hover {
@@ -71,22 +82,38 @@ const Link = styled(RouterLink)`
   }
 `;
 
+const LoginButton = styled.button`
+  padding:  6px 12px;
+  background-color: #333;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  vertical-align: middle;
+`;
 
-const Navbar = ({ toggleSidebar }) => {
+const Div1 = styled.div`
+  display: flex;
+  align-items: center; // This aligns items vertically in the middle
+  //justify-content: center; // This aligns items horizontally in the middle
+`;
+
+
+
+const Navbar = ({ toggleSidebar, handleLoginClick }) => {
   return (
-<Nav>
-  <StyledIcon onClick={toggleSidebar} />
-  <Link to="/">Designr.Pro</Link>
-  <div>
-    <StyledGithub />
-    <StyledInstagram />
-    <StyledLinkedin />
-  </div>
-</Nav>
-
+    <Nav>
+      <StyledIcon onClick={toggleSidebar} />
+      <Link to="/">Designr.Pro</Link>
+      <Div1>
+        <StyledGithub />
+        <StyledInstagram />
+        {/* <StyledLinkedin /> */}
+        <LoginButton onClick={handleLoginClick}><StyledLogedIn /></LoginButton>
+      </Div1>
+     
+    </Nav>
   );
 };
-
-
 
 export default Navbar;

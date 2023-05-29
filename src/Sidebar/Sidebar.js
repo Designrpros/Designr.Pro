@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import styled from 'styled-components';
 import { Link as RouterLink } from 'react-router-dom';
-import { FaHome, FaEnvelope, FaUserCircle } from 'react-icons/fa';
+import { FaHome, FaEnvelope, FaUserCircle, FaNotesMedical } from 'react-icons/fa';
 import { BsFillPersonFill } from 'react-icons/bs';
 
 
@@ -83,7 +83,8 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
         <li><Link to="/" onClick={toggleSidebar}><FaHome /> Home</Link></li>
         <li><Link to="/about" onClick={toggleSidebar}><BsFillPersonFill />  About</Link></li>
         <li><Link to="/contact" onClick={toggleSidebar}><FaEnvelope />  Contact</Link></li>
-        <li><Link to="/cv" onClick={toggleSidebar}><FaEnvelope />  CV</Link></li>
+        <br />
+        <li><Link to="/note" onClick={toggleSidebar}><FaNotesMedical />  Note</Link></li>
       </List>
     </Aside>
   );
