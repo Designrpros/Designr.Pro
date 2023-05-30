@@ -96,7 +96,7 @@ const Sidebar = ({ isOpen, toggleSidebar, handleLoginClick, isLoggedIn }) => {
         <br />
         <li><Link to="/nomad" onClick={toggleSidebar}><FaNotesMedical />  Nomad</Link></li>
         <br />
-        <li><Link to="/note" onClick={toggleSidebar}><FaNotesMedical />  Note</Link></li>
+        <li><Link to="/blog" onClick={toggleSidebar}><FaNotesMedical />  Blog</Link></li>
         <li><Link to="/sketch" onClick={toggleSidebar}><FaNotesMedical />  Sketch</Link></li>
         <li><Link to="/mindnode" onClick={toggleSidebar}><FaNotesMedical />  MindNode</Link></li>
         <br />

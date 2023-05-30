@@ -35,7 +35,7 @@ const AddBlogButton = styled.button`
   margin: 20px 0;
 `;
 
-const Blog = () => {
+const Blog1 = () => {
   const [blogPosts, setBlogPosts] = useState([
     { id: 1, title: 'Blog Post 1', text: 'This is the first blog post.', imageUrl: 'https://via.placeholder.com/150' },
     { id: 2, title: 'Blog Post 2', text: 'This is the second blog post.', imageUrl: 'https://via.placeholder.com/150' },
@@ -62,5 +62,5 @@ const Blog = () => {
   );
 };
 
-export default Blog;
+export default Blog1;
 
