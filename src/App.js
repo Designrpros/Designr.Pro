@@ -5,6 +5,7 @@ import Sidebar from './Top_Level_Components/Sidebar/Sidebar';
 import MainContent from './Pages/MainContent/MainContent';
 import About from './Pages/About/About';
 import DesignrPro from './Pages/About/DesignrPro/DesignrPro';
+import Gallery from './Pages/About/Gallery/Gallery';
 import CV from './Pages/About/CV/CV';
 import Contact from './Pages/About/CV/Contact';
 import Chatbot from './Top_Level_Components/Chatbot/Chatbot';
@@ -65,6 +66,7 @@ const App = () => {
   <Route path="/about" element={<About />}>
     <Route path="designrpro" element={<DesignrPro />} />
     <Route path="cv" element={<CV />} />
+    <Route path="gallery" element={<Gallery />} />
   </Route>
   <Route path="/contact" element={<Contact />} />
   <Route path="/nomad" element={<Nomad />} />

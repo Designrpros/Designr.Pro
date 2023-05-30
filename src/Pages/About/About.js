@@ -1,8 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Routes, Route, Link, Outlet } from 'react-router-dom';
+import { Routes, Route, Link } from 'react-router-dom';
 import CV from './CV/CV.js';
 import DesignrPro from './DesignrPro/DesignrPro.js';
+import Gallery from './Gallery/Gallery.js';
 
 const ToolbarContainer = styled.div`
   display: flex;
@@ -31,22 +32,29 @@ const AboutContainer = styled.div`
   width: 100%;
 `;
 
+
+
 const About = () => {
   return (
     <AboutContainer>
       <ToolbarContainer>
-        <ToolbarLink to="designrpro">
-          Designr.Pro
+        <ToolbarLink to="/about/designrpro">
+          About
         </ToolbarLink>
-        <ToolbarLink to="cv">
+        <ToolbarLink to="/about/cv">
           CV
+        </ToolbarLink>
+        <ToolbarLink to="/about/gallery">
+          Gallery
         </ToolbarLink>
       </ToolbarContainer>
       <Routes>
         <Route path="designrpro" element={<DesignrPro />} />
         <Route path="cv" element={<CV />} />
+        <Route path="gallery" element={<Gallery />} />
       </Routes>
-    </AboutContainer>
+      <p style={{alignItems: 'center', textAlign: 'center', marginTop: '50px', color: '#333', fontSize: '20px'}}>Pick A Tab</p>
+      </AboutContainer>
   );
 };
 
