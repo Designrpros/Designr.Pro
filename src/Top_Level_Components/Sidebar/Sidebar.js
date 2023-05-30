@@ -91,7 +91,7 @@ const Sidebar = ({ isOpen, toggleSidebar, handleLoginClick, isLoggedIn }) => {
 
       <List>
         <li><Link to="/" onClick={toggleSidebar}><FaHome /> Home</Link></li>
-        <li><Link to="/about" onClick={toggleSidebar}><BsFillPersonFill />  About</Link></li>
+        <li><Link to="/About/designrpro" onClick={toggleSidebar}><BsFillPersonFill />  About</Link></li>
         <li><Link to="/contact" onClick={toggleSidebar}><FaEnvelope />  Contact</Link></li>
         <br />
         <li><Link to="/nomad" onClick={toggleSidebar}><FaNotesMedical />  Nomad</Link></li>
