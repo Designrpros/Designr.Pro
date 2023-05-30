@@ -15,12 +15,12 @@ const SliderContainer = styled.div`
 const Slider = () => {
   return (
     <SliderContainer>
-      <Card to="/nomad" icon="home" title="Nomad">This is the Nomad card</Card>
-      <Card to="/about" icon="user" title="User">This is the user card</Card>
-      <Card to="/contact" icon="envelope" title="Contact">This is the contact card</Card>
-      <Card to="/note" icon="note" title="Note">This is the contact card</Card>
-      <Card to="/sketch" icon="envelope" title="Sketch">This is the contact card</Card>
-      <Card to="/mindnode" icon="envelope" title="MindNode">This is the contact card</Card>
+      <Card to="/nomad" icon="home" title="Nomad"></Card>
+      <Card to="/About/designrpro" icon="user" title="About"></Card>
+      <Card to="/contact" icon="envelope" title="Contact"></Card>
+      <Card to="/note" icon="note" title="Note"></Card>
+      <Card to="/sketch" icon="envelope" title="Sketch"></Card>
+      <Card to="/mindnode" icon="envelope" title="MindNode"></Card>
     </SliderContainer>
   );
 };
