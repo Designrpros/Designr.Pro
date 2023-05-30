@@ -63,6 +63,7 @@ const Nav = styled.nav`
   color: #333;
   position: sticky;
   top: 0;
+  border-bottom: 1px solid #ddd;
   z-index: 10; // This ensures the navbar stays on top of other elements
 
   

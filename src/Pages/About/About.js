@@ -1,24 +1,25 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
-import CV from './CV/CV'
+import { Routes, Route, Link, Outlet } from 'react-router-dom';
+import CV from './CV/CV.js';
+import DesignrPro from './DesignrPro/DesignrPro.js';
 
-const SegmentControllerContainer = styled.div`
+const ToolbarContainer = styled.div`
   display: flex;
-  justify-content: center;
-  margin-bottom: 20px;
-  padding: 0;
-  margin: 20px; // corrected here
+  justify-content: space-between;
   width: 100%;
+  border-bottom: 1px solid #ddd;
 `;
 
-
-
-const SegmentButton = styled.button`
-  padding: 10px 20px;
+const ToolbarLink = styled(Link)`
+  flex-grow: 1;
+  padding: 10px 0;
   border: none;
-  background-color: ${props => props.selected ? '#333' : '#ddd'};
+  background-color: ${props => props.selected ? '#333' : '#fff'};
   color: ${props => props.selected ? '#fff' : '#333'};
   cursor: pointer;
+  text-align: center;
+  text-decoration: none;
 
   &:hover {
     background-color: #333;
@@ -26,43 +27,25 @@ const SegmentButton = styled.button`
   }
 `;
 
-const CVContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 20px;
-`;
-
 const AboutContainer = styled.div`
   width: 100%;
 `;
 
 const About = () => {
-  const [selectedSegment, setSelectedSegment] = useState('designr.pro');
-
   return (
     <AboutContainer>
-      <SegmentControllerContainer>
-        <SegmentButton selected={selectedSegment === 'designr.pro'} onClick={() => setSelectedSegment('designr.pro')}>
+      <ToolbarContainer>
+        <ToolbarLink to="designrpro">
           Designr.Pro
-        </SegmentButton>
-        <SegmentButton selected={selectedSegment === 'cv'} onClick={() => setSelectedSegment('cv')}>
+        </ToolbarLink>
+        <ToolbarLink to="cv">
           CV
-        </SegmentButton>
-      </SegmentControllerContainer>
-      <CVContainer>
-        {selectedSegment === 'designr.pro' ? (
-          <>
-            <h2>About Designr.Pro</h2>
-            <p>Designr.Pro is a web design company based in California, USA. We specialize in modern, mobile-ready websites that help you reach all of your marketing goals. 
-              We also offer music writing, advertising, and game development services.</p>
-          </>
-        ) : (
-          <>
-            <CV />
-          </>
-        )}
-      </CVContainer>
+        </ToolbarLink>
+      </ToolbarContainer>
+      <Routes>
+        <Route path="designrpro" element={<DesignrPro />} />
+        <Route path="cv" element={<CV />} />
+      </Routes>
     </AboutContainer>
   );
 };
