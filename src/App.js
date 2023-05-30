@@ -4,6 +4,8 @@ import Navbar from './Top_Level_Components/Navbar/Navbar';
 import Sidebar from './Top_Level_Components/Sidebar/Sidebar';
 import MainContent from './Pages/MainContent/MainContent';
 import About from './Pages/About/About';
+import DesignrPro from './Pages/About/DesignrPro/DesignrPro';
+import CV from './Pages/About/CV/CV';
 import Contact from './Pages/About/CV/Contact';
 import Chatbot from './Top_Level_Components/Chatbot/Chatbot';
 import ChatbotIcon from './Top_Level_Components/Chatbot/ChatbotIcon';
@@ -36,17 +38,14 @@ const App = () => {
     setIsModalOpen(true);
   };
 
-
-
-const handleLogin = () => {
-  // Perform the login operation here and set isLoggedIn to true when done
-  setIsLoggedIn(true);
-};
-
+  const handleLogin = () => {
+    setIsLoggedIn(true);
+  };
 
   const handleCloseModal = () => {
     setIsModalOpen(false);
   };  
+
 
   return (
     <Router>
@@ -61,16 +60,20 @@ const handleLogin = () => {
         </Modal>
       )}
 
-      <Routes>
-          <Route path="/" element={<MainContent />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/contact" element={<Contact />} />
-          <Route path="/nomad" element={<Nomad />} />
-          <Route path="/note" element={<Note />} />
-          <Route path="/mindnode" element={<MindNode />} />
-          <Route path="/sketch" element={<Sketch />} />
-          <Route path="/Dimension" element={<Dimension />} />
-      </Routes>
+<Routes>
+  <Route path="/" element={<MainContent />} />
+  <Route path="/about" element={<About />}>
+    <Route path="designrpro" element={<DesignrPro />} />
+    <Route path="cv" element={<CV />} />
+  </Route>
+  <Route path="/contact" element={<Contact />} />
+  <Route path="/nomad" element={<Nomad />} />
+  <Route path="/note" element={<Note />} />
+  <Route path="/mindnode" element={<MindNode />} />
+  <Route path="/sketch" element={<Sketch />} />
+  <Route path="/Dimension" element={<Dimension />} />
+</Routes>
+
     </Router>
   );
 };
