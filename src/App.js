@@ -1,17 +1,18 @@
 import React, { useState } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Navbar from './Navbar/Navbar';
-import Sidebar from './Sidebar/Sidebar';
-import MainContent from './MainContent/MainContent';
-import About from './About/About';
-import Contact from './About/CV/Contact';
-import Chatbot from './Chatbot/Chatbot';
-import ChatbotIcon from './Chatbot/ChatbotIcon';
-import Note from './Note/Note.js';
-import Nomad from './Nomad/Nomad.js';
-import Sketch from './Sketch/Sketch.js';
-import MindNode from './MindNode/MindNode.js';
-import Modal from './Modal';
+import Navbar from './Top_Level_Components/Navbar/Navbar';
+import Sidebar from './Top_Level_Components/Sidebar/Sidebar';
+import MainContent from './Pages/MainContent/MainContent';
+import About from './Pages/About/About';
+import Contact from './Pages/About/CV/Contact';
+import Chatbot from './Top_Level_Components/Chatbot/Chatbot';
+import ChatbotIcon from './Top_Level_Components/Chatbot/ChatbotIcon';
+import Note from './Pages/Note/Note.js';
+import Nomad from './Pages/Nomad/Nomad.js';
+import Sketch from './Pages/Sketch/Sketch.js';
+import MindNode from './Pages/MindNode/MindNode.js';
+import Dimension from './Pages/Dimension/Dimension.js';
+import Modal from './Top_Level_Components/Modal';
 
 import { createGlobalStyle } from 'styled-components';
 
@@ -68,6 +69,7 @@ const handleLogin = () => {
           <Route path="/note" element={<Note />} />
           <Route path="/mindnode" element={<MindNode />} />
           <Route path="/sketch" element={<Sketch />} />
+          <Route path="/Dimension" element={<Dimension />} />
       </Routes>
     </Router>
   );

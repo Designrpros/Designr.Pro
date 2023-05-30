@@ -61,10 +61,11 @@ const Nav = styled.nav`
   padding: 1rem 2rem;
   background-color: #fff;
   color: #333;
-  position: sticky; // Add this line
-  top: 0; // And this line
+  position: sticky;
+  top: 0;
   z-index: 10; // This ensures the navbar stays on top of other elements
 
+  
   &:hover {
     color: #ddd;
   }

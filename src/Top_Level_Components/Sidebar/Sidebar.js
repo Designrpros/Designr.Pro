@@ -99,6 +99,8 @@ const Sidebar = ({ isOpen, toggleSidebar, handleLoginClick, isLoggedIn }) => {
         <li><Link to="/note" onClick={toggleSidebar}><FaNotesMedical />  Note</Link></li>
         <li><Link to="/sketch" onClick={toggleSidebar}><FaNotesMedical />  Sketch</Link></li>
         <li><Link to="/mindnode" onClick={toggleSidebar}><FaNotesMedical />  MindNode</Link></li>
+        <br />
+        <li><Link to="/dimension" onClick={toggleSidebar}><FaNotesMedical />  Dimension</Link></li>
       </List>
     </Aside>
   );

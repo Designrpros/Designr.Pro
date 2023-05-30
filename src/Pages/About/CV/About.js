@@ -60,7 +60,7 @@ const About = () => {
         <Title>About Me</Title>
         <Content>
           <Text>
-            I am a web designer and developer with experience in building and customizing websites. I love to create unique and modern designs.
+            I am a web designer and developer with experience in building and customizing websites. I love to create unique and modern designs. I like making stuff and putting it on the internet
           </Text>
           <Keynotes>
                 <li>
