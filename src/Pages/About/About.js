@@ -53,7 +53,6 @@ const About = () => {
         <Route path="cv" element={<CV />} />
         <Route path="gallery" element={<Gallery />} />
       </Routes>
-      <p style={{alignItems: 'center', textAlign: 'center', marginTop: '50px', color: '#333', fontSize: '20px'}}>Pick A Tab</p>
       </AboutContainer>
   );
 };

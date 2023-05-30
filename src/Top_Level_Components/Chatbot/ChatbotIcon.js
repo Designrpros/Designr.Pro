@@ -8,7 +8,6 @@ const ChatbotIconButton = styled.div`
   right: 20px;
   width: 70px;
   height: 50px;
-  border-radius: 50%;
   display: flex;
   justify-content: center;
   align-items: center;
