@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { Routes, Route, Link } from 'react-router-dom';
 import Blog from './Blog.js';
-import BlogEditor from './BlogEditor.js';
+import BlogEditor from './BlogEditor/BlogEditor.js';
 
 const ToolbarContainer = styled.div`
   display: flex;

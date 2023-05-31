@@ -11,12 +11,12 @@ import Contact from './Pages/About/CV/Contact';
 import Chatbot from './Top_Level_Components/Chatbot/Chatbot';
 import ChatbotIcon from './Top_Level_Components/Chatbot/ChatbotIcon';
 import BlogPage from './Pages/Blog/BlogPage.js';
-import BlogEditor from './Pages/Blog/BlogEditor';
+import BlogEditor from './Pages/Blog/BlogEditor/BlogEditor';
 import Nomad from './Pages/Nomad/Nomad.js';
 import Sketch from './Pages/Sketch/Sketch.js';
 import MindNode from './Pages/MindNode/MindNode.js';
 import Dimension from './Pages/Dimension/Dimension.js';
-import Modal from './Top_Level_Components/Modal';
+import Modal from './Components/Modal';
 
 import { createGlobalStyle } from 'styled-components';
 import Blog from './Pages/Dimension/Dimension.js';

@@ -1,6 +1,9 @@
 import React, {useRef, useState } from 'react';
 import styled from 'styled-components';
 import { FaApple, FaGithub, FaGoogle } from 'react-icons/fa';
+import { auth } from '../FirebaseSDK.js'; // adjust the path to your firebaseSDK.js file
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
+import { logFirebaseEvent } from '../FirebaseSDK.js';
 
 const ModalOverlay = styled.div`
   position: fixed;
@@ -56,8 +59,14 @@ const SocialIconsContainer = styled.div`
   margin-bottom: 10px;
 `;
 
+
+
+
 const Modal = ({ closeModal }) => {
   const [view, setView] = useState('login'); // 'login' or 'signup'
+  const [email, setEmail] = useState(''); // email input value
+  const [password, setPassword] = useState(''); // password input value
+  const [error, setError] = useState(''); // error message
 
   const handleOutsideClick = (e) => {
     if (e.target.id === 'modal-overlay') {
@@ -65,35 +74,64 @@ const Modal = ({ closeModal }) => {
     }
   };
 
+  const handleSignUp = async (email, password, closeModal) => {
+    try {
+      await createUserWithEmailAndPassword(auth, email, password);
+      // User account created successfully
+      // Log an event
+      logFirebaseEvent('sign_up', { method: 'email_password' });
+      // You can close the modal here
+      closeModal();
+    } catch (error) {
+      // Handle error (e.g., show error message)
+      setError(error.message);
+    }
+  };
+
+  const handleLogIn = async (email, password, closeModal) => {
+    try {
+      await signInWithEmailAndPassword(auth, email, password);
+      // User signed in successfully
+      // Log an event
+      logFirebaseEvent('log_in', { method: 'email_password' });
+      // You can close the modal here
+      closeModal();
+    } catch (error) {
+      // Handle error (e.g., show error message)
+      setError(error.message);
+    }
+  };
+
   return (
     <ModalOverlay id="modal-overlay" onClick={handleOutsideClick}>
       <ModalContainer>
+        {error && <p>{error}</p>} {/* Display error message */}
         {view === 'login' ? (
           <>
             <h2>Login</h2>
-            <Input type="email" placeholder="Email" />
-            <Input type="password" placeholder="Password" />
-            <Button>Login</Button>
+            <Input type="email" placeholder="Email" value={email} onChange={e => setEmail(e.target.value)} />
+            <Input type="password" placeholder="Password" value={password} onChange={e => setPassword(e.target.value)} />
+            <Button onClick={() => handleLogIn(email, password, closeModal)}>Log In</Button>
             <p>Or login with:</p>
             <SocialIconsContainer>
                 <SocialIcon><FaApple /></SocialIcon>
                 <SocialIcon><FaGithub /></SocialIcon>
                 <SocialIcon><FaGoogle /></SocialIcon>
-          </SocialIconsContainer>
+            </SocialIconsContainer>
             <p>Don't have an account? <span onClick={() => setView('signup')}>Sign up</span></p>
           </>
         ) : (
           <>
             <h2>Sign Up</h2>
-            <Input type="email" placeholder="Email" />
-            <Input type="password" placeholder="Password" />
-            <Button>Sign Up</Button>
+            <Input type="email" placeholder="Email" value={email} onChange={e => setEmail(e.target.value)} />
+            <Input type="password" placeholder="Password" value={password} onChange={e => setPassword(e.target.value)} />
+            <Button onClick={() => handleSignUp(email, password, closeModal)}>Sign Up</Button>
             <p>Or sign up with:</p>
             <SocialIconsContainer>
                 <SocialIcon><FaApple /></SocialIcon>
                 <SocialIcon><FaGithub /></SocialIcon>
                 <SocialIcon><FaGoogle /></SocialIcon>
-          </SocialIconsContainer>
+            </SocialIconsContainer>
             <p>Already have an account? <span onClick={() => setView('login')}>Login</span></p>
           </>
         )}

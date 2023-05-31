@@ -1,8 +1,9 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
 import { Link as RouterLink } from 'react-router-dom';
 import { FaHome, FaEnvelope, FaUserCircle, FaNotesMedical } from 'react-icons/fa';
 import { BsFillPersonFill } from 'react-icons/bs';
+import { auth } from '../../FirebaseSDK.js'; 
 
 
 
@@ -21,7 +22,7 @@ const Aside = styled.aside`
   position: fixed;
   top: 0;
   left: 0;
-  width: 200px; // Set the width to your desired value
+  width: 200px;
   height: 100%;
   background-color: #333;
   color: #fff;
@@ -56,30 +57,28 @@ const LoginButton = styled.button`
 `;
 
 
-const Sidebar = ({ isOpen, toggleSidebar, handleLoginClick, isLoggedIn }) => {
-
+const Sidebar = ({ isOpen, toggleSidebar, handleLoginClick }) => {
+  const [user, setUser] = useState(null);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const ref = useRef();
 
   useEffect(() => {
-    const checkIfClickedOutside = e => {
-      if (isOpen && ref.current && !ref.current.contains(e.target)) {
-        toggleSidebar();
-      }
-    }
+    const unsubscribe = auth.onAuthStateChanged((user) => {
+      setUser(user);
+      setIsLoggedIn(!!user);
+    });
 
-    document.addEventListener("mousedown", checkIfClickedOutside)
+    // Cleanup function to unsubscribe from the listener when the component unmounts
+    return () => unsubscribe();
+  }, []);
 
-    return () => {
-      document.removeEventListener("mousedown", checkIfClickedOutside)
-    }
-  }, [isOpen, toggleSidebar]);
 
   return (
     <Aside isOpen={isOpen} ref={ref}>
       {isLoggedIn ? (
         <LoginButton>
           <FaUserCircle size={50} />
-          Logged In As User
+          Logged In As {user ? user.email : 'User'}
         </LoginButton>
       ) : (
         <LoginButton onClick={handleLoginClick}>
