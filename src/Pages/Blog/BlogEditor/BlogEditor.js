@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { db } from '../../../FirebaseSDK.js';
 import { collection, addDoc, doc, updateDoc, getDoc } from 'firebase/firestore';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { AiOutlineArrowLeft, AiFillDelete } from 'react-icons/ai';
 
@@ -57,6 +57,8 @@ const BlogEditor = () => {
   const { postId } = useParams();
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
+  const navigate = useNavigate();
+
 
   // Log the postId
   console.log(postId);
@@ -107,7 +109,7 @@ const BlogEditor = () => {
   return (
     <EditorContainer>
       <EditorHeader>
-        <AiOutlineArrowLeft size={24} /> {/* This is the back arrow icon */}
+      <AiOutlineArrowLeft size={24} onClick={() => navigate('/blog/blogadmin')} />
         <EditorTitle>Blog Editor</EditorTitle>
         <AiFillDelete size={24} /> {/* This is the trash icon */}
       </EditorHeader>
