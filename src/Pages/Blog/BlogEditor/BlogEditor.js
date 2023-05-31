@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { db } from '../../../FirebaseSDK.js';
-import { collection, addDoc, doc, updateDoc, getDoc } from 'firebase/firestore';
+import { collection, addDoc, doc, updateDoc, getDoc, deleteDoc } from 'firebase/firestore';
 import { useParams, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { AiOutlineArrowLeft, AiFillDelete } from 'react-icons/ai';
@@ -105,13 +105,21 @@ const BlogEditor = () => {
     setContent('');
   };
   
+  const handleDeleteDraft = async () => {
+    if (postId) {
+      await deleteDoc(doc(db, 'posts', postId));
+      console.log("Document deleted with ID: ", postId);
+    }
+    navigate('/blog/blogadmin');
+  };
+  
 
   return (
     <EditorContainer>
       <EditorHeader>
       <AiOutlineArrowLeft size={24} onClick={() => navigate('/blog/blogadmin')} />
         <EditorTitle>Blog Editor</EditorTitle>
-        <AiFillDelete size={24} /> {/* This is the trash icon */}
+        <AiFillDelete size={24} onClick={handleDeleteDraft} />
       </EditorHeader>
       <EditorForm onSubmit={handleSubmit}>
         <EditorInput type="text" value={title} onChange={e => setTitle(e.target.value)} placeholder="Title" />
