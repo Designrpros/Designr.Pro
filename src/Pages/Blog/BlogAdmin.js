@@ -2,20 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { db } from '../../FirebaseSDK.js';
 import { collection, getDocs, deleteDoc, doc, updateDoc } from 'firebase/firestore';
 import styled from 'styled-components';
-import Modal from 'react-modal';
-
-const customStyles = {
-  content: {
-    top: '50%',
-    left: '50%',
-    right: 'auto',
-    bottom: 'auto',
-    marginRight: '-50%',
-    transform: 'translate(-50%, -50%)',
-    width: '80%', // adjust this value to change the modal's width
-    height: '80%', // adjust this value to change the modal's height
-  },
-};
+import { useNavigate } from 'react-router-dom';
 
 const BlogAdminContainer = styled.div`
   display: flex;
@@ -81,17 +68,7 @@ const DeleteButton = styled.button`
 
 const BlogAdmin = () => {
     const [posts, setPosts] = useState([]);
-    const [isModalOpen, setIsModalOpen] = useState(false);
-    const [selectedPost, setSelectedPost] = useState(null);
-  
-    const handleOpenModal = (post) => {
-      setSelectedPost(post);
-      setIsModalOpen(true);
-    };
-  
-    const handleCloseModal = () => {
-      setIsModalOpen(false);
-    };
+    const navigate = useNavigate();
   
     const handleDeletePost = async (postId) => {
       await deleteDoc(doc(db, 'posts', postId));
@@ -99,11 +76,10 @@ const BlogAdmin = () => {
       fetchPosts();
     };
   
-    const handleEditPost = async (postId, updatedPost) => {
-      await updateDoc(doc(db, 'posts', postId), updatedPost);
-      // Refresh posts after update
-      fetchPosts();
+    const handleEditPost = (postId) => {
+        navigate(`/blog/blogeditor/${postId}`);
     };
+    
   
     const fetchPosts = async () => {
       const postsCollection = collection(db, 'posts');
@@ -123,38 +99,17 @@ const BlogAdmin = () => {
           <PostCard key={index}>
             <div>
               <PostTitle>{post.title}</PostTitle>
-              <PostDate>{post.date && typeof post.date.toDate === 'function' ? post.date.toDate().toLocaleDateString() : 'No date'}
-</PostDate>
-              <PostContent>{post.content}</PostContent>
+              <PostDate>{post.date && typeof post.date.toDate === 'function' ? post.date.toDate().toLocaleDateString() : 'No date'}</PostDate>
             </div>
             <div>
-              <EditButton onClick={() => handleOpenModal(post)}>Edit</EditButton>
+              <EditButton onClick={() => handleEditPost(post.id)}>Edit</EditButton>
               <DeleteButton onClick={() => handleDeletePost(post.id)}>Delete</DeleteButton>
             </div>
           </PostCard>
         ))}
-        <Modal 
-            isOpen={isModalOpen} 
-            onRequestClose={handleCloseModal} 
-            style={customStyles}
-            >
-            {selectedPost && (
-                <>
-                <h2>Edit Post</h2>
-                <label>
-                    Title:
-                    <input type="text" value={selectedPost.title} onChange={(e) => setSelectedPost({...selectedPost, title: e.target.value})} />
-                </label>
-                <label>
-                    Content:
-                    <textarea value={selectedPost.content} onChange={(e) => setSelectedPost({...selectedPost, content: e.target.value})} />
-                </label>
-                <EditButton onClick={() => handleEditPost(selectedPost.id, selectedPost)}>Save</EditButton>
-                </>
-            )}
-        </Modal>
-    </BlogAdminContainer>
+      </BlogAdminContainer>
     );
-}
+  }
+  
 
 export default BlogAdmin;

@@ -51,6 +51,7 @@ const BlogPage = () => {
         <Route path="/" element={<Blog />} />
         <Route path="blogadmin" element={<BlogAdmin />} />
         <Route path="blogeditor" element={<BlogEditor />} />
+        <Route path="blogeditor/:postId" element={<BlogEditor />} />
       </Routes>
     </BlogContainer>
   );

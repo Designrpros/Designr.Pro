@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { db } from '../../../FirebaseSDK.js';
-import { collection, addDoc } from 'firebase/firestore';
+import { collection, addDoc, doc, updateDoc, getDoc } from 'firebase/firestore';
+import { useParams } from 'react-router-dom';
 import styled from 'styled-components';
 import { AiOutlineArrowLeft, AiFillDelete } from 'react-icons/ai';
-
 
 const EditorContainer = styled.div`
   display: flex;
@@ -54,20 +54,51 @@ const EditorHeader = styled.div`
 `;
 
 const BlogEditor = () => {
+  const { postId } = useParams();
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
 
+  // Log the postId
+  console.log(postId);
+
+
+  useEffect(() => {
+    const fetchPost = async () => {
+      if (postId) {
+        const postDoc = await getDoc(doc(db, 'posts', postId));
+        if (postDoc.exists()) {
+          const postData = postDoc.data();
+          setTitle(postData.title);
+          setContent(postData.content);
+        }
+      }
+    };
+
+    fetchPost();
+  }, [postId]);
+
   const handleSubmit = async (event) => {
     event.preventDefault();
-  
-    // Create new document in Firestore
-    const docRef = await addDoc(collection(db, "posts"), {
-      title: title,
-      content: content,
-      date: new Date() // set the date field to the current date
-    });
-  
-    console.log("Document written with ID: ", docRef.id);
+
+    // If postId exists, update the existing post. Otherwise, create a new post.
+    if (postId) {
+      const postRef = doc(db, 'posts', postId);
+      await updateDoc(postRef, {
+        title: title,
+        content: content,
+        date: new Date() // update the date field to the current date
+      });
+      console.log("Document updated with ID: ", postId);
+    } else {
+      // Create new document in Firestore
+      const docRef = await addDoc(collection(db, "posts"), {
+        title: title,
+        content: content,
+        date: new Date() // set the date field to the current date
+      });
+      console.log("Document written with ID: ", docRef.id);
+    }
+
     setTitle('');
     setContent('');
   };

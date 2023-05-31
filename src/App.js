@@ -18,6 +18,7 @@ import MindNode from './Pages/MindNode/MindNode.js';
 import Dimension from './Pages/Dimension/Dimension.js';
 import Modal from './Components/Modal';
 
+
 import { createGlobalStyle } from 'styled-components';
 import Blog from './Pages/Dimension/Dimension.js';
 
