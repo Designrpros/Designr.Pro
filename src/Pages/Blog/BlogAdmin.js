@@ -4,7 +4,8 @@ import { collection, getDocs, deleteDoc, doc, updateDoc } from 'firebase/firesto
 import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
 import { AiOutlinePlusCircle } from 'react-icons/ai';
-import { UserContext } from '../../UserContext.js';
+import UserContext from '../../UserContext.js';
+
 
 
 const BlogAdminContainer = styled.div`

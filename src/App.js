@@ -17,6 +17,7 @@ import MindNode from './Pages/MindNode/MindNode.js';
 import Dimension from './Pages/Dimension/Dimension.js';
 import Modal from './Components/Modal';
 import UserContext from './UserContext';
+import Cookies from 'js-cookie';
 
 
 import { createGlobalStyle } from 'styled-components';
