@@ -34,7 +34,7 @@ const EditorInput = styled.input`
 const EditorTextArea = styled.textarea`
   margin-bottom: 20px;
   padding: 10px;
-  height: 500px;
+  height: 400px;
   align-items: center;
 `;
 
