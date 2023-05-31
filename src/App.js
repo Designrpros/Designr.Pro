@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, {createContext, useState } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Navbar from './Top_Level_Components/Navbar/Navbar';
 import Sidebar from './Top_Level_Components/Sidebar/Sidebar';
@@ -11,12 +11,12 @@ import Contact from './Pages/About/CV/Contact';
 import Chatbot from './Top_Level_Components/Chatbot/Chatbot';
 import ChatbotIcon from './Top_Level_Components/Chatbot/ChatbotIcon';
 import BlogPage from './Pages/Blog/BlogPage.js';
-import BlogEditor from './Pages/Blog/BlogEditor/BlogEditor';
 import Nomad from './Pages/Nomad/Nomad.js';
 import Sketch from './Pages/Sketch/Sketch.js';
 import MindNode from './Pages/MindNode/MindNode.js';
 import Dimension from './Pages/Dimension/Dimension.js';
 import Modal from './Components/Modal';
+import UserContext from './UserContext';
 
 
 import { createGlobalStyle } from 'styled-components';
@@ -27,6 +27,8 @@ const GlobalStyle = createGlobalStyle`
     background-color: #FBF7F6;
   }
 `;
+
+
 
 const App = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -52,6 +54,7 @@ const App = () => {
 
 
   return (
+    <UserContext.Provider value={{ isLoggedIn, setIsLoggedIn }}>
     <Router>
       <GlobalStyle />
       <Navbar toggleSidebar={toggleSidebar} handleLoginClick={handleLoginClick} />
@@ -81,6 +84,7 @@ const App = () => {
 
 
     </Router>
+    </UserContext.Provider>
   );
 };
 

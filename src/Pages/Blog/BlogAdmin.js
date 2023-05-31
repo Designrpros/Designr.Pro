@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React, {useContext, useEffect, useState } from 'react';
 import { db } from '../../FirebaseSDK.js';
 import { collection, getDocs, deleteDoc, doc, updateDoc } from 'firebase/firestore';
 import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
 import { AiOutlinePlusCircle } from 'react-icons/ai';
-
+import { UserContext } from '../../UserContext.js';
 
 
 const BlogAdminContainer = styled.div`
@@ -83,6 +83,8 @@ const AddButton = styled.button`
 
 
 const BlogAdmin = () => {
+    const { isLoggedIn } = useContext(UserContext);
+  
     const [posts, setPosts] = useState([]);
     const navigate = useNavigate();
   
@@ -113,7 +115,10 @@ const BlogAdmin = () => {
         navigate('/blog/blogeditor');
       };
 
-      
+      if (!isLoggedIn) {
+        return <div>You must be logged in to access this page.</div>;
+      }
+
     return (
       <BlogAdminContainer>
         <BlogAdminTitle>
