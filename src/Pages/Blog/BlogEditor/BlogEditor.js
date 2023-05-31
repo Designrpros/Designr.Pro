@@ -63,13 +63,15 @@ const BlogEditor = () => {
     // Create new document in Firestore
     const docRef = await addDoc(collection(db, "posts"), {
       title: title,
-      content: content
+      content: content,
+      date: new Date() // set the date field to the current date
     });
   
     console.log("Document written with ID: ", docRef.id);
     setTitle('');
     setContent('');
   };
+  
 
   return (
     <EditorContainer>
