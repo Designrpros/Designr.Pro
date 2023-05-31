@@ -3,6 +3,9 @@ import { db } from '../../FirebaseSDK.js';
 import { collection, getDocs, deleteDoc, doc, updateDoc } from 'firebase/firestore';
 import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
+import { AiOutlinePlusCircle } from 'react-icons/ai';
+
+
 
 const BlogAdminContainer = styled.div`
   display: flex;
@@ -66,6 +69,19 @@ const DeleteButton = styled.button`
   cursor: pointer;
 `;
 
+const AddButton = styled.button`
+  background-color: transparent; /* No background */
+  border: none;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+`;
+
+
 const BlogAdmin = () => {
     const [posts, setPosts] = useState([]);
     const navigate = useNavigate();
@@ -92,9 +108,20 @@ const BlogAdmin = () => {
       fetchPosts();
     }, []);
   
+
+    const handleAddPost = () => {
+        navigate('/blog/blogeditor');
+      };
+
+      
     return (
       <BlogAdminContainer>
-        <BlogAdminTitle>Blog Admin</BlogAdminTitle>
+        <BlogAdminTitle>
+            Blog Admin
+        <AddButton onClick={handleAddPost}>
+            <AiOutlinePlusCircle size={24} /> {/* This is the plus icon */}
+        </AddButton>
+        </BlogAdminTitle>
         {posts.map((post, index) => (
           <PostCard key={index}>
             <div>
