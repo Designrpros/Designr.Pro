@@ -1,4 +1,4 @@
-import React, {createContext, useState } from 'react';
+import React, {createContext, useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Navbar from './Top_Level_Components/Navbar/Navbar';
 import Sidebar from './Top_Level_Components/Sidebar/Sidebar';
@@ -41,12 +41,26 @@ const App = () => {
     setIsSidebarOpen(!isSidebarOpen);
   };
 
+  useEffect(() => {
+    const loggedInCookie = Cookies.get('isLoggedIn');
+    if (loggedInCookie === 'true') {
+      setIsLoggedIn(true);
+    }
+  }, []);
+
   const handleLoginClick = () => {
     setIsModalOpen(true);
-  };
+};
+
 
   const handleLogin = () => {
     setIsLoggedIn(true);
+    Cookies.set('isLoggedIn', 'true', { expires: 7 }); // Cookie will expire after 7 days
+  };
+
+  const handleLogout = () => {
+    setIsLoggedIn(false);
+    Cookies.remove('isLoggedIn');
   };
 
   const handleCloseModal = () => {
@@ -62,10 +76,8 @@ const App = () => {
       <Sidebar isOpen={isSidebarOpen} toggleSidebar={toggleSidebar} handleLoginClick={handleLoginClick} isLoggedIn={isLoggedIn} />
       {isChatbotOpen ? <Chatbot setIsChatbotOpen={setIsChatbotOpen} /> : <ChatbotIcon onClick={() => setIsChatbotOpen(true)} />}
       {isModalOpen && (
-        <Modal closeModal={handleCloseModal}>
-          <h2>Login</h2>
-          {/* Add your login form here */}
-        </Modal>
+        <Modal closeModal={handleCloseModal} handleLogin={handleLogin} />
+
       )}
 
 <Routes>

@@ -62,7 +62,7 @@ const SocialIconsContainer = styled.div`
 
 
 
-const Modal = ({ closeModal }) => {
+const Modal = ({ closeModal, handleLogin }) => {
   const [view, setView] = useState('login'); // 'login' or 'signup'
   const [email, setEmail] = useState(''); // email input value
   const [password, setPassword] = useState(''); // password input value
@@ -88,13 +88,15 @@ const Modal = ({ closeModal }) => {
     }
   };
 
-  const handleLogIn = async (email, password, closeModal) => {
+  const handleLogIn = async (email, password) => {
     try {
       await signInWithEmailAndPassword(auth, email, password);
       // User signed in successfully
       // Log an event
       logFirebaseEvent('log_in', { method: 'email_password' });
-      // You can close the modal here
+      // Call handleLogin
+      handleLogin();
+      // Close the modal
       closeModal();
     } catch (error) {
       // Handle error (e.g., show error message)
