@@ -63,6 +63,26 @@ const Sidebar = ({ isOpen, toggleSidebar, handleLoginClick }) => {
   const ref = useRef();
 
   useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (ref.current && !ref.current.contains(event.target)) {
+        toggleSidebar();
+      }
+    };
+
+    // Bind the event listener
+    if (isOpen) {
+      document.addEventListener("mousedown", handleClickOutside);
+    } else {
+      document.removeEventListener("mousedown", handleClickOutside);
+    }
+
+    // Unbind the event listener on clean up
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [isOpen, ref]);
+
+  useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((user) => {
       setUser(user);
       setIsLoggedIn(!!user);
@@ -71,6 +91,21 @@ const Sidebar = ({ isOpen, toggleSidebar, handleLoginClick }) => {
     // Cleanup function to unsubscribe from the listener when the component unmounts
     return () => unsubscribe();
   }, []);
+
+    useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (ref.current && !ref.current.contains(event.target)) {
+        toggleSidebar();
+      }
+    };
+
+    // Bind the event listener
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      // Unbind the event listener on clean up
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [ref]);
 
 
   return (

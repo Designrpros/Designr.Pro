@@ -1,7 +1,7 @@
 import React, {useRef, useState } from 'react';
 import styled from 'styled-components';
 import { FaApple, FaGithub, FaGoogle } from 'react-icons/fa';
-import { auth } from '../FirebaseSDK.js'; // adjust the path to your firebaseSDK.js file
+import { auth } from '../FirebaseSDK.js';
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
 import { logFirebaseEvent } from '../FirebaseSDK.js';
 

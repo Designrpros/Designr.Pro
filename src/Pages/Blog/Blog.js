@@ -42,7 +42,21 @@ const PostDate = styled.p`
   margin-bottom: 10px;
 `;
 
+const FilterMenu = styled.div`
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+  padding 10px;
+`;
 
+const FilterButton = styled.button`
+  border: none;
+  background: none;
+  cursor: pointer;
+  margin: 0 10px;
+  font-size: 16px;
+  padding 10px;
+`;
 
 const Blog = () => {
   const [posts, setPosts] = useState([]);
@@ -69,8 +83,13 @@ const Blog = () => {
 
   return (
     <BlogContainer>
-      <BlogTitle>Blog</BlogTitle>
       <BlogImage src={BlogImg} alt="Blog" />
+      <BlogTitle>Blog</BlogTitle>
+      <FilterMenu>
+        <FilterButton>All</FilterButton>
+        <FilterButton>Recent</FilterButton>
+        <FilterButton>Starred</FilterButton>
+      </FilterMenu>
       {posts.map((post, index) => (
       <PostCard key={index} onClick={() => handleOpenPost(post.id)}>
       <PostTitle>{post.title}</PostTitle>
