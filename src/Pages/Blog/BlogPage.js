@@ -4,6 +4,9 @@ import { Routes, Route, Link } from 'react-router-dom';
 import Blog from './Blog.js';
 import BlogEditor from './BlogEditor/BlogEditor.js';
 import BlogAdmin from './BlogAdmin.js';
+import BlogPost from './BlogPost.js';
+
+
 
 const ToolbarContainer = styled.div`
   display: flex;
@@ -40,19 +43,22 @@ const BlogPage = () => {
           Blog
         </ToolbarLink>
         <ToolbarLink to="blogadmin">
-          Blog Admin
+          Admin
         </ToolbarLink>
-        <ToolbarLink to="blogeditor">
+        {/* <ToolbarLink to="blogeditor">
           Blog Editor
-        </ToolbarLink>
+        </ToolbarLink> */}
 
       </ToolbarContainer>
       <Routes>
-        <Route path="/" element={<Blog />} />
-        <Route path="blogadmin" element={<BlogAdmin />} />
-        <Route path="blogeditor" element={<BlogEditor />} />
-        <Route path="blogeditor/:postId" element={<BlogEditor />} />
-      </Routes>
+  <Route path="/" element={<Blog />} />
+  <Route path="/blogadmin" element={<BlogAdmin />} />
+  <Route path="/blogeditor" element={<BlogEditor />} />
+  <Route path="/blogeditor/:postId" element={<BlogEditor />} />
+  <Route path="/:postId" element={<BlogPost />} />
+</Routes>
+
+
     </BlogContainer>
   );
 };

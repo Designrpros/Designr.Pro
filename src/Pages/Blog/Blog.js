@@ -1,22 +1,10 @@
 import React, { useEffect, useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import { db } from '../../FirebaseSDK.js';
 import { collection, getDocs } from 'firebase/firestore';
 import styled from 'styled-components';
 import BlogImg from './BlogImg.webp';
-import Modal from 'react-modal';
 
-const customStyles = {
-  content: {
-    top: '50%',
-    left: '50%',
-    right: 'auto',
-    bottom: 'auto',
-    marginRight: '-50%',
-    transform: 'translate(-50%, -50%)',
-    width: '80%', // adjust this value to change the modal's width
-    height: '80%', // adjust this value to change the modal's height
-  },
-};
 
 const BlogContainer = styled.div`
   display: flex;
@@ -54,61 +42,42 @@ const PostDate = styled.p`
   margin-bottom: 10px;
 `;
 
-const PostContent = styled.p`
-  color: #333;
-`;
-
-
 
 
 const Blog = () => {
   const [posts, setPosts] = useState([]);
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [selectedPost, setSelectedPost] = useState(null);
-
-  const handleOpenModal = (post) => {
-    setSelectedPost(post);
-    setIsModalOpen(true);
-  };
-
-  const handleCloseModal = () => {
-    setIsModalOpen(false);
-  };
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchPosts = async () => {
       const postsCollection = collection(db, 'posts');
       const postSnapshot = await getDocs(postsCollection);
-      const postList = postSnapshot.docs.map(doc => doc.data());
+      const postList = postSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
       setPosts(postList);
     };
+    
+    
 
     fetchPosts();
   }, []);
+
+  const handleOpenPost = (postId) => {
+    console.log("Navigating to post with ID: ", postId);
+    navigate(`/blog/${postId}`);
+  };
+  
 
   return (
     <BlogContainer>
       <BlogTitle>Blog</BlogTitle>
       <BlogImage src={BlogImg} alt="Blog" />
       {posts.map((post, index) => (
-        <PostCard key={index} onClick={() => handleOpenModal(post)}>
-          <PostTitle>{post.title}</PostTitle>
-          <PostDate>{post.date && post.date.toDate().toLocaleDateString()}</PostDate>
-        </PostCard>
+      <PostCard key={index} onClick={() => handleOpenPost(post.id)}>
+      <PostTitle>{post.title}</PostTitle>
+      <PostDate>{post.date && post.date.toDate().toLocaleDateString()}</PostDate>
+    </PostCard>
+    
       ))}
-      <Modal 
-        isOpen={isModalOpen} 
-        onRequestClose={handleCloseModal} 
-        style={customStyles}
-      >
-        {selectedPost && (
-          <>
-            <h2>{selectedPost.title}</h2>
-            <PostDate>{selectedPost.date && selectedPost.date.toDate().toLocaleDateString()}</PostDate>
-            <p>{selectedPost.content}</p>
-          </>
-        )}
-      </Modal>
     </BlogContainer>
   );
 }
