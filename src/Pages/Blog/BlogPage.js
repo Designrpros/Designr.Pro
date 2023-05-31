@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { Routes, Route, Link } from 'react-router-dom';
 import Blog from './Blog.js';
 import BlogEditor from './BlogEditor/BlogEditor.js';
+import BlogAdmin from './BlogAdmin.js';
 
 const ToolbarContainer = styled.div`
   display: flex;
@@ -38,6 +39,9 @@ const BlogPage = () => {
         <ToolbarLink to="/blog">
           Blog
         </ToolbarLink>
+        <ToolbarLink to="blogadmin">
+          Blog Admin
+        </ToolbarLink>
         <ToolbarLink to="blogeditor">
           Blog Editor
         </ToolbarLink>
@@ -45,6 +49,7 @@ const BlogPage = () => {
       </ToolbarContainer>
       <Routes>
         <Route path="/" element={<Blog />} />
+        <Route path="blogadmin" element={<BlogAdmin />} />
         <Route path="blogeditor" element={<BlogEditor />} />
       </Routes>
     </BlogContainer>
