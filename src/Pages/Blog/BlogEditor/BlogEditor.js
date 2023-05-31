@@ -4,6 +4,9 @@ import { collection, addDoc, doc, updateDoc, getDoc, deleteDoc } from 'firebase/
 import { useParams, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { AiOutlineArrowLeft, AiFillDelete } from 'react-icons/ai';
+import ReactQuill from 'react-quill';
+import 'quill/dist/quill.snow.css'; // import styles
+
 
 const EditorContainer = styled.div`
   display: flex;
@@ -29,14 +32,14 @@ const EditorForm = styled.form`
 const EditorInput = styled.input`
   margin-bottom: 20px;
   padding: 10px;
+  background: none;
+  border: none;
+  font-size: 20px; // Increase the font size
+  height: 50px; // Increase the height of the input field
+  width: 100%; // Make the input field take up the full width of its container
 `;
 
-const EditorTextArea = styled.textarea`
-  margin-bottom: 20px;
-  padding: 10px;
-  height: 400px;
-  align-items: center;
-`;
+
 
 const EditorSubmit = styled.input`
   padding: 10px;
@@ -49,7 +52,7 @@ const EditorSubmit = styled.input`
 const EditorHeader = styled.div`
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: right;
   width: 100%;
 `;
 
@@ -90,14 +93,14 @@ const BlogEditor = () => {
       const postRef = doc(db, 'posts', postId);
       await updateDoc(postRef, {
         title: title,
-        content: formattedContent,
+        content: content, // content is now HTML
         date: new Date()
       });
       console.log("Document updated with ID: ", postId);
     } else {
       const docRef = await addDoc(collection(db, "posts"), {
         title: title,
-        content: formattedContent,
+        content: content, // content is now HTML
         date: new Date()
       });
       console.log("Document written with ID: ", docRef.id);
@@ -118,14 +121,14 @@ const BlogEditor = () => {
 
   return (
     <EditorContainer>
-      <EditorHeader>
-      <AiOutlineArrowLeft size={24} onClick={() => navigate('/blog/blogadmin')} />
-        <EditorTitle>Blog Editor</EditorTitle>
-        <AiFillDelete size={24} onClick={handleDeleteDraft} />
-      </EditorHeader>
+      
       <EditorForm onSubmit={handleSubmit}>
         <EditorInput type="text" value={title} onChange={e => setTitle(e.target.value)} placeholder="Title" />
-        <EditorTextArea value={content} onChange={e => setContent(e.target.value)} placeholder="Content" />
+        <EditorHeader>
+      <AiOutlineArrowLeft size={24} onClick={() => navigate('/blog/blogadmin')} />
+        <AiFillDelete size={24} onClick={handleDeleteDraft} />
+      </EditorHeader>
+        <ReactQuill value={content} onChange={setContent} />
         <EditorSubmit type="submit" value="Submit" />
       </EditorForm>
     </EditorContainer>

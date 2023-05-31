@@ -76,7 +76,7 @@ const BlogPost = () => {
       </BackButton>
       <PostTitle>{post.title}</PostTitle>
       <PostDate>{post.date && post.date.toDate().toLocaleDateString()}</PostDate>
-      <PostContent>{formattedContent}</PostContent>
+      <PostContent dangerouslySetInnerHTML={{ __html: post.content }} />
     </PostContainer>
   );
 };
