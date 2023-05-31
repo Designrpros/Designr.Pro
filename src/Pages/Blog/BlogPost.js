@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import { db } from '../../FirebaseSDK.js';
 import { doc, getDoc } from 'firebase/firestore';
 import styled from 'styled-components';
+import { AiOutlineArrowLeft} from 'react-icons/ai';
 
 const PostContainer = styled.div`
   display: flex;
@@ -25,9 +26,18 @@ const PostContent = styled.p`
   /* Add your styles for the content here */
 `;
 
+const BackButton = styled.button`
+  position: absolute;
+  top: 120px;
+  left: 20px;
+  border: none;
+  background: none;
+`;
+
 const BlogPost = () => {
   const { postId } = useParams();
   const [post, setPost] = useState(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchPost = async () => {
@@ -49,6 +59,9 @@ const BlogPost = () => {
 
   return (
     <PostContainer>
+      <BackButton>
+        <AiOutlineArrowLeft size={24} onClick={() => navigate('/blog')} />
+      </BackButton>
       <PostTitle>{post.title}</PostTitle>
       <PostDate>{post.date && post.date.toDate().toLocaleDateString()}</PostDate>
       <PostContent>{post.content}</PostContent>
