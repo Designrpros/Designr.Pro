@@ -5,7 +5,15 @@ import { FaHome, FaEnvelope, FaUserCircle, FaNotesMedical } from 'react-icons/fa
 import { BsFillPersonFill } from 'react-icons/bs';
 import { auth } from '../../FirebaseSDK.js'; 
 
-
+const Overlay = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 10;
+`;
 
 const Link = styled(RouterLink)`
   color: #fff;
@@ -60,6 +68,7 @@ const LoginButton = styled.button`
 const Sidebar = ({ isOpen, toggleSidebar, handleLoginClick }) => {
   const [user, setUser] = useState(null);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  
   const ref = useRef();
 
   useEffect(() => {
@@ -92,24 +101,11 @@ const Sidebar = ({ isOpen, toggleSidebar, handleLoginClick }) => {
     return () => unsubscribe();
   }, []);
 
-    useEffect(() => {
-    const handleClickOutside = (event) => {
-      if (ref.current && !ref.current.contains(event.target)) {
-        toggleSidebar();
-      }
-    };
-
-    // Bind the event listener
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => {
-      // Unbind the event listener on clean up
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, [ref]);
-
 
   return (
-    <Aside isOpen={isOpen} ref={ref}>
+    <>
+    {isOpen && <Overlay onClick={toggleSidebar} />}
+      <Aside isOpen={isOpen}>
       {isLoggedIn ? (
         <LoginButton>
           <FaUserCircle size={50} />
@@ -137,6 +133,7 @@ const Sidebar = ({ isOpen, toggleSidebar, handleLoginClick }) => {
         <li><Link to="/dimension" onClick={toggleSidebar}><FaNotesMedical />  Dimension</Link></li>
       </List>
     </Aside>
+    </>
   );
 };
 
