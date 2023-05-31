@@ -81,26 +81,28 @@ const BlogEditor = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+  
+    // Replace line breaks with a placeholder before saving the data
+    const formattedContent = content.replace(/\n/g, '<br/>');
 
     // If postId exists, update the existing post. Otherwise, create a new post.
     if (postId) {
       const postRef = doc(db, 'posts', postId);
       await updateDoc(postRef, {
         title: title,
-        content: content,
-        date: new Date() // update the date field to the current date
+        content: formattedContent,
+        date: new Date()
       });
       console.log("Document updated with ID: ", postId);
     } else {
-      // Create new document in Firestore
       const docRef = await addDoc(collection(db, "posts"), {
         title: title,
-        content: content,
-        date: new Date() // set the date field to the current date
+        content: formattedContent,
+        date: new Date()
       });
       console.log("Document written with ID: ", docRef.id);
     }
-
+  
     setTitle('');
     setContent('');
   };

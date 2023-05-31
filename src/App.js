@@ -25,7 +25,7 @@ import Blog from './Pages/Dimension/Dimension.js';
 
 const GlobalStyle = createGlobalStyle`
   body {
-    background-color: #FBF7F6;
+    background-color: #FBF7F6; 
   }
 `;
 

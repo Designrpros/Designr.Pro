@@ -32,6 +32,7 @@ const BackButton = styled.button`
   left: 20px;
   border: none;
   background: none;
+
 `;
 
 const BlogPost = () => {
@@ -41,10 +42,13 @@ const BlogPost = () => {
 
   useEffect(() => {
     const fetchPost = async () => {
-      console.log(postId); // Log the postId
+      console.log(postId);
       const postDoc = await getDoc(doc(db, 'posts', postId));
       if (postDoc.exists()) {
-        setPost(postDoc.data());
+        const postData = postDoc.data();
+        // Replace the placeholder with line breaks when retrieving the data
+        const formattedContent = postData.content.replace(/<br\/>/g, '\n');
+        setPost({ ...postData, content: formattedContent });
       }
     };
   
@@ -57,6 +61,14 @@ const BlogPost = () => {
     return <div>Loading...</div>;
   }
 
+  // Split the content string by line breaks and map each line to a JSX element
+  const formattedContent = post.content.split('\n').map((line, index) => (
+    <span key={index}>
+      {line}
+      <br />
+    </span>
+  ));
+
   return (
     <PostContainer>
       <BackButton>
@@ -64,7 +76,7 @@ const BlogPost = () => {
       </BackButton>
       <PostTitle>{post.title}</PostTitle>
       <PostDate>{post.date && post.date.toDate().toLocaleDateString()}</PostDate>
-      <PostContent>{post.content}</PostContent>
+      <PostContent>{formattedContent}</PostContent>
     </PostContainer>
   );
 };
