@@ -162,8 +162,6 @@ const Gallery = () => {
           {items.map((item) => (
             <GridItem key={item.id}>
               <img src={item.url} alt={item.title} />
-              <Title>{item.title}</Title>
-              <ExplanationText>{item.type}</ExplanationText>
             </GridItem>
           ))}
         </RowView>
