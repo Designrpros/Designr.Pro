@@ -88,26 +88,29 @@ const Gallery = () => {
   const fileInputRef = useRef(null);
 
   const handleFileChange = (event) => {
-    const file = event.target.files[0];
-    if (file) {
-      const storageRef = ref(storage, 'images/' + file.name);
-      const uploadTask = uploadBytesResumable(storageRef, file);
+    const files = event.target.files;
+    if (files) {
+      Array.from(files).forEach(file => {
+        const storageRef = ref(storage, 'images/' + file.name);
+        const uploadTask = uploadBytesResumable(storageRef, file);
   
-      uploadTask.on('state_changed', 
-        (snapshot) => {
-          // Handle the upload progress
-        }, 
-        (error) => {
-          // Handle unsuccessful uploads
-        }, 
-        () => {
-          getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
-            setItems([...items, { id: items.length + 1, title: 'New Item', type: 'Image', url: downloadURL }]);
-          });
-        }
-      );
+        uploadTask.on('state_changed', 
+          (snapshot) => {
+            // Handle the upload progress
+          }, 
+          (error) => {
+            // Handle unsuccessful uploads
+          }, 
+          () => {
+            getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+              setItems(prevItems => [...prevItems, { id: prevItems.length + 1, title: 'New Item', type: 'Image', url: downloadURL }]);
+            });
+          }
+        );
+      });
     }
   };
+  
   
   
 
@@ -121,7 +124,7 @@ const Gallery = () => {
       <Title>Gallery</Title>
       <FilterMenu>
         <AddButton onClick={handleAddClick}>+</AddButton>
-        <input type="file" onChange={handleFileChange} style={{ display: 'none' }} ref={fileInputRef} />
+        <input type="file" onChange={handleFileChange} style={{ display: 'none' }} ref={fileInputRef} multiple />
         <FilterButton onClick={() => setView('grid')}>Grid</FilterButton>
         <FilterButton onClick={() => setView('row')}>Row</FilterButton>
         {/* ... */}
