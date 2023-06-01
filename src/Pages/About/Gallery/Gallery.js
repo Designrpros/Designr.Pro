@@ -1,5 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import styled from 'styled-components';
+
+
 
 const GalleryContainer = styled.div`
   display: flex;
@@ -26,10 +28,10 @@ const FilterButton = styled.button`
 
 const GridItems = styled.div`
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  grid-template-columns: repeat(3, 1fr); // This will create 3 columns
   gap: 20px;
-  width: 100%;
-
+  width: 80%; // This will take 80% of the screen width
+  margin: 0 auto; // This will center the grid
 `;
 
 const GridItem = styled.div`
@@ -37,12 +39,26 @@ const GridItem = styled.div`
   flex-direction: column;
   align-items: center;
   border: 1px solid #ddd;
-  padding: 10px;
+  border-radius: 10px; // Add border radius
+
+  img {
+    width: 100%; // Make the image take the full width of the card
+    height: 300px; // Increase the fixed height
+    object-fit: cover;
+  }
 `;
 
+
 const Title = styled.h2`
-  margin-bottom: 20px;
+  font-size: 20px; // Smaller title
+  margin: 10px 0; // Add some margin to separate from the image
 `;
+
+const ExplanationText = styled.p`
+  font-size: 12px; // Smaller explanation text
+  margin: 0 10px 10px; // Add some margin
+`;
+
 
 const AddButton = styled.button`
 border: none;
@@ -51,97 +67,75 @@ cursor: pointer;
 font-size: 24px;
 `;
 
-const Modal = styled.div`
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.5);
-  display: flex;
-  justify-content: center;
-  align-items: center;
+
+const GridView = styled.div`
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); // This will create 3 columns
+  gap: 20px;
+  width: 80%; // This will take 80% of the screen width
+  margin: 0 auto; // This will center the grid
 `;
 
-const ModalContent = styled.div`
-  background: white;
-  padding: 20px;
-  border-radius: 10px;
+
+const RowView = styled.div`
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
 `;
 
-const FileInput = styled.input`
-  display: block;
-`;
-
-const AddItemButton = styled.button`
-  background: #007BFF;
-  color: white;
-  border: none;
-  padding: 10px 20px;
-  border-radius: 5px;
-  cursor: pointer;
-  margin-top: 10px;
-`;
 
 
 const Gallery = () => {
-  const [items, setItems] = useState([
-    { id: 1, title: 'ZOSS Clothing Logo', type: 'Image', url: 'https://via.placeholder.com/150' },
-    { id: 2, title: 'NUDE Branding Mockup', type: 'Video', url: 'https://via.placeholder.com/150' },
-    { id: 3, title: 'Art Poster Mockup', type: 'Music', url: 'https://via.placeholder.com/150' },
-    { id: 4, title: 'Normalcy Web Design', type: 'Content', url: 'https://via.placeholder.com/150' },
-    // Add more items here
-  ]);
+  const [view, setView] = useState('grid'); // 'grid' or 'row'
+  const [items, setItems] = useState([]); // Initialize items as an empty array
 
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [selectedFile, setSelectedFile] = useState(null);
-
-  const handleOpenModal = () => {
-    setIsModalOpen(true);
-  };
+  const fileInputRef = useRef(null);
 
   const handleFileChange = (event) => {
-    setSelectedFile(URL.createObjectURL(event.target.files[0]));
+    const file = event.target.files[0];
+    if (file) {
+      const url = URL.createObjectURL(file);
+      setItems([...items, { id: items.length + 1, title: 'New Item', type: 'Image', url }]);
+    }
   };
 
   const handleAddClick = () => {
-    setItems([...items, { id: items.length + 1, title: 'New Item', type: 'Image', url: selectedFile }]);
-    setSelectedFile(null);
-    setIsModalOpen(false);
+    fileInputRef.current.click();
   };
+  
 
   return (
     <GalleryContainer>
-      <Title>Recent Works</Title>
+      <Title>Gallery</Title>
       <FilterMenu>
-        <AddButton onClick={handleOpenModal}>+</AddButton>
-        {isModalOpen && (
-          <Modal>
-            <ModalContent>
-              <FileInput type="file" onChange={handleFileChange} />
-              {selectedFile && <AddItemButton onClick={handleAddClick}>Add Item</AddItemButton>}
-            </ModalContent>
-          </Modal>
-        )}
-        <FilterButton>All</FilterButton>
-        <FilterButton>Image</FilterButton>
-        <FilterButton>Gallery</FilterButton>
-        <FilterButton>Video</FilterButton>
-        <FilterButton>Music</FilterButton>
-        <FilterButton>Content</FilterButton>
+        <AddButton onClick={handleAddClick}>+</AddButton>
+        <input type="file" onChange={handleFileChange} style={{ display: 'none' }} ref={fileInputRef} />
+        <FilterButton onClick={() => setView('grid')}>Grid</FilterButton>
+        <FilterButton onClick={() => setView('row')}>Row</FilterButton>
+        {/* ... */}
       </FilterMenu>
-
-      <GridItems>
-        {items.map((item) => (
-          <GridItem key={item.id}>
-            <img src={item.url} alt={item.title} />
-            <h2>{item.title}</h2>
-            <p>{item.type}</p>
-          </GridItem>
-        ))}
-      </GridItems>
+  
+      {view === 'grid' ? (
+        <GridView>
+          {items.map((item) => (
+            <GridItem key={item.id}>
+              <img src={item.url} alt={item.title} />
+            </GridItem>
+          ))}
+        </GridView>
+      ) : (
+        <RowView>
+          {items.map((item) => (
+            <GridItem key={item.id}>
+              <img src={item.url} alt={item.title} />
+              <Title>{item.title}</Title>
+              <ExplanationText>{item.type}</ExplanationText>
+            </GridItem>
+          ))}
+        </RowView>
+      )}
     </GalleryContainer>
   );
-};
+}
 
 export default Gallery;
