@@ -18,6 +18,11 @@ const EditorContainer = styled.div`
   margin: auto;
 `;
 
+
+const EditorTitle = styled.h1`
+  text-align: center;
+`;
+
 const EditorForm = styled.form`
   display: flex;
   flex-direction: column;
@@ -37,7 +42,6 @@ const EditorInput = styled.input`
 
 
 const EditorSubmit = styled.input`
-max-width: 800px;
   padding: 10px;
   background-color: #333;
   color: #fff;
@@ -51,42 +55,6 @@ const EditorHeader = styled.div`
   align-items: right;
   width: 100%;
 `;
-
-const StyledQuill = styled(ReactQuill)`
-max-width: 800px;
-
-  .ql-editor {
-    min-height: 400px;
-  }
-`;
-
-
-
-const modules = {
-  toolbar: [
-    ['bold', 'italic', 'underline', 'strike'],        // toggled buttons
-    ['blockquote', 'code-block'],
-
-    [{ 'header': 1 }, { 'header': 2 }],               // custom button values
-    [{ 'list': 'ordered'}, { 'list': 'bullet' }],
-    [{ 'script': 'sub'}, { 'script': 'super' }],      // superscript/subscript
-    [{ 'indent': '-1'}, { 'indent': '+1' }],          // outdent/indent
-    [{ 'direction': 'rtl' }],                         // text direction
-
-    // [{ 'size': ['small', false, 'large', 'huge'] }],  // custom dropdown
-    [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
-
-    [{ 'color': [] }, { 'background': [] }],          // dropdown with defaults from theme
-    [{ 'font': [] }],
-    [{ 'align': [] }],
-
-    ['clean'],                                         // remove formatting button
-
-    ['link', 'image', 'video']                         // link and image, video
-  ],
-};
-
-
 
 const BlogEditor = () => {
   const { postId } = useParams();
@@ -155,11 +123,12 @@ const BlogEditor = () => {
     <EditorContainer>
       
       <EditorForm onSubmit={handleSubmit}>
-      <AiOutlineArrowLeft size={24} onClick={() => navigate('/blog/blogadmin')} />
         <EditorInput type="text" value={title} onChange={e => setTitle(e.target.value)} placeholder="Title" />
         <EditorHeader>
+      <AiOutlineArrowLeft size={24} onClick={() => navigate('/blog/blogadmin')} />
+        <AiFillDelete size={24} onClick={handleDeleteDraft} />
       </EditorHeader>
-        <StyledQuill value={content} onChange={setContent} modules={modules} />        
+        <ReactQuill value={content} onChange={setContent} />
         <EditorSubmit type="submit" value="Submit" />
       </EditorForm>
     </EditorContainer>
