@@ -26,20 +26,12 @@ const FilterButton = styled.button`
   padding 10px;
 `;
 
-const GridItems = styled.div`
-  display: grid;
-  grid-template-columns: repeat(3, 1fr); // This will create 3 columns
-  gap: 20px;
-  width: 80%; // This will take 80% of the screen width
-  margin: 0 auto; // This will center the grid
-`;
-
 const GridItem = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
   border: 1px solid #ddd;
-  border-radius: 10px; // Add border radius
+  border-radius: 0px; // Add border radius
 
   img {
     width: 100%; // Make the image take the full width of the card
@@ -71,8 +63,8 @@ font-size: 24px;
 const GridView = styled.div`
   display: grid;
   grid-template-columns: repeat(3, 1fr); // This will create 3 columns
-  gap: 20px;
-  width: 80%; // This will take 80% of the screen width
+  gap: 0px;
+  width: 100%; // This will take 80% of the screen width
   margin: 0 auto; // This will center the grid
 `;
 
@@ -80,7 +72,8 @@ const GridView = styled.div`
 const RowView = styled.div`
   display: grid;
   grid-template-columns: 1fr;
-  gap: 20px;
+  gap: 0px;
+
 `;
 
 
