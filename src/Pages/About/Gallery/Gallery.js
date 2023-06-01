@@ -1,7 +1,8 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import styled from 'styled-components';
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
-import { app, storage } from '../../../FirebaseSDK';
+import { collection, addDoc, getDocs } from "firebase/firestore";
+import { db, storage } from '../../../FirebaseSDK';
 
 
 
@@ -87,13 +88,27 @@ const Gallery = () => {
 
   const fileInputRef = useRef(null);
 
+  // Fetch images from Firestore when component mounts
+  useEffect(() => {
+    const fetchImages = async () => {
+      const querySnapshot = await getDocs(collection(db, "images"));
+      const images = [];
+      querySnapshot.forEach((doc) => {
+        images.push(doc.data());
+      });
+      setItems(images);
+    };
+
+    fetchImages();
+  }, []);
+
   const handleFileChange = (event) => {
     const files = event.target.files;
     if (files) {
       Array.from(files).forEach(file => {
         const storageRef = ref(storage, 'images/' + file.name);
         const uploadTask = uploadBytesResumable(storageRef, file);
-  
+
         uploadTask.on('state_changed', 
           (snapshot) => {
             // Handle the upload progress
@@ -103,7 +118,11 @@ const Gallery = () => {
           }, 
           () => {
             getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
-              setItems(prevItems => [...prevItems, { id: prevItems.length + 1, title: 'New Item', type: 'Image', url: downloadURL }]);
+              const newItem = { id: items.length + 1, title: 'New Item', type: 'Image', url: downloadURL };
+              setItems(prevItems => [...prevItems, newItem]);
+
+              // Add image metadata to Firestore
+              addDoc(collection(db, "images"), newItem);
             });
           }
         );

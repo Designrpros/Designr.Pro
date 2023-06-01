@@ -15,7 +15,8 @@ const AboutContainer = styled.div`
 
 const Title = styled.h1`
   font-size: 2.5em;
-  margin-bottom: 20px;
+  margin-top: 200px;
+
 `;
 
 const Content = styled.div`
