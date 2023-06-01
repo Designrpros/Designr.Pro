@@ -1,5 +1,8 @@
 import React, { useState, useRef } from 'react';
 import styled from 'styled-components';
+import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
+import { app, storage } from '../../../FirebaseSDK';
+
 
 
 
@@ -87,10 +90,26 @@ const Gallery = () => {
   const handleFileChange = (event) => {
     const file = event.target.files[0];
     if (file) {
-      const url = URL.createObjectURL(file);
-      setItems([...items, { id: items.length + 1, title: 'New Item', type: 'Image', url }]);
+      const storageRef = ref(storage, 'images/' + file.name);
+      const uploadTask = uploadBytesResumable(storageRef, file);
+  
+      uploadTask.on('state_changed', 
+        (snapshot) => {
+          // Handle the upload progress
+        }, 
+        (error) => {
+          // Handle unsuccessful uploads
+        }, 
+        () => {
+          getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+            setItems([...items, { id: items.length + 1, title: 'New Item', type: 'Image', url: downloadURL }]);
+          });
+        }
+      );
     }
   };
+  
+  
 
   const handleAddClick = () => {
     fileInputRef.current.click();

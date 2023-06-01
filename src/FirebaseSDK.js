@@ -2,6 +2,7 @@ import { initializeApp } from "firebase/app";
 import { getAnalytics, logEvent } from "firebase/analytics";
 import { getAuth } from "firebase/auth";
 import { getFirestore } from "firebase/firestore";
+import { getStorage, ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
@@ -17,6 +18,10 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 
+// Initialize Firebase Storage
+const storage = getStorage(app);
+
+
 // Initialize Firebase Authentication and Firestore
 const auth = getAuth(app);
 const db = getFirestore(app);
@@ -29,4 +34,4 @@ const logFirebaseEvent = (eventName, eventParams) => {
   logEvent(analytics, eventName, eventParams);
 };
 
-export { auth, db, logFirebaseEvent };
+export { app, auth, db, logFirebaseEvent, storage };
