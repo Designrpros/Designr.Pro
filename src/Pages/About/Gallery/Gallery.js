@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import { collection, addDoc, getDocs } from "firebase/firestore";
 import { db, storage } from '../../../FirebaseSDK';
-
+import ImageView from './ImageView';
 
 
 
@@ -35,12 +35,12 @@ const GridItem = styled.div`
   flex-direction: column;
   align-items: center;
   border: 1px solid #ddd;
-  border-radius: 0px; // Add border radius
+  border-radius: 0px;
 
   img {
-    width: 100%; // Make the image take the full width of the card
-    height: 300px; // Increase the fixed height
+    width: 100%;
     object-fit: cover;
+    height: 100%;
   }
 `;
 
@@ -85,6 +85,7 @@ const RowView = styled.div`
 const Gallery = () => {
   const [view, setView] = useState('grid'); // 'grid' or 'row'
   const [items, setItems] = useState([]); // Initialize items as an empty array
+  const [selectedItem, setSelectedItem] = useState(null);
 
   const fileInputRef = useRef(null);
 
@@ -143,28 +144,33 @@ const Gallery = () => {
       <Title>Gallery</Title>
       <FilterMenu>
         <AddButton onClick={handleAddClick}>+</AddButton>
-        <input type="file" onChange={handleFileChange} style={{ display: 'none' }} ref={fileInputRef} multiple />
+        <input type="file" onChange={handleFileChange} style={{ display: 'none' }} ref={fileInputRef} />
         <FilterButton onClick={() => setView('grid')}>Grid</FilterButton>
         <FilterButton onClick={() => setView('row')}>Row</FilterButton>
-        {/* ... */}
       </FilterMenu>
-  
-      {view === 'grid' ? (
-        <GridView>
-          {items.map((item) => (
-            <GridItem key={item.id}>
-              <img src={item.url} alt={item.title} />
-            </GridItem>
-          ))}
-        </GridView>
+
+      {selectedItem ? (
+        <ImageView item={selectedItem} back={() => setSelectedItem(null)} />
       ) : (
-        <RowView>
-          {items.map((item) => (
-            <GridItem key={item.id}>
-              <img src={item.url} alt={item.title} />
-            </GridItem>
-          ))}
-        </RowView>
+        view === 'grid' ? (
+          <GridView>
+            {items.map((item) => (
+              <GridItem key={item.id} onClick={() => setSelectedItem(item)}>
+                <img src={item.url} alt={item.title} />
+              </GridItem>
+            ))}
+          </GridView>
+        ) : (
+          <RowView>
+            {items.map((item) => (
+              <GridItem key={item.id} onClick={() => setSelectedItem(item)}>
+                <img src={item.url} alt={item.title} />
+                <Title>{item.title}</Title>
+                <ExplanationText>{item.type}</ExplanationText>
+              </GridItem>
+            ))}
+          </RowView>
+        )
       )}
     </GalleryContainer>
   );
