@@ -82,6 +82,13 @@ const AddButton = styled.button`
   cursor: pointer;
 `;
 
+const Div1 = styled.button`
+  position: absolute;
+    top: 50%;
+    left: 50%;
+
+`;
+
 
 const BlogAdmin = () => {
     const { isLoggedIn } = useContext(UserContext);
@@ -117,7 +124,7 @@ const BlogAdmin = () => {
       };
 
       if (!isLoggedIn) {
-        return <div>You must be logged in to access this page.</div>;
+        return <Div1>You must be logged in to access this page.</Div1>;
       }
 
     return (
