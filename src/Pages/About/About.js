@@ -9,6 +9,7 @@ const ToolbarContainer = styled.div`
   display: flex;
   justify-content: space-between;
   width: 100%;
+  
   border-bottom: 1px solid #ddd;
 `;
 
@@ -16,8 +17,8 @@ const ToolbarLink = styled(Link)`
   flex-grow: 1;
   padding: 10px 0;
   border: none;
-  background-color: ${props => props.selected ? '#333' : '#fff'};
-  color: ${props => props.selected ? '#fff' : '#333'};
+  background-color: ${props => props.selected ? '#333' : '#FCFCFE'};
+  color: ${props => props.selected ? '#FCFCFE' : '#333'};
   cursor: pointer;
   text-align: center;
   text-decoration: none;

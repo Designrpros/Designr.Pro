@@ -49,9 +49,6 @@ const StyledLogedIn = styled(IoIosLogIn)`
   color: white;
   font-size: 1.5em;
 
-  &:hover {
-    color: #ddd;
-  }
 `;
 
 const Nav = styled.nav`
@@ -59,17 +56,14 @@ const Nav = styled.nav`
   justify-content: space-between;
   align-items: center;
   padding: 1rem 2rem;
-  background-color: #fff;
+  background-color: #FCFCFE;
   color: #333;
   position: sticky;
   top: 0;
   border-bottom: 1px solid #ddd;
   z-index: 10; // This ensures the navbar stays on top of other elements
 
-  
-  &:hover {
-    color: #ddd;
-  }
+
 `;
 
 
@@ -84,14 +78,14 @@ const Link = styled(RouterLink)`
   }
 `;
 
-const LoginButton = styled.button`
-  padding:  6px 12px;
-  background-color: #333;
-  color: #fff;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  vertical-align: middle;
+const LoginButton = styled(IoIosLogIn)`
+  color: none;
+  font-size: 1.7em;
+
+    
+  &:hover {
+    color: #ddd;
+  }
 `;
 
 const Div1 = styled.div`

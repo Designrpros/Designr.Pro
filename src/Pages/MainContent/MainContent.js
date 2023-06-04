@@ -5,12 +5,32 @@ import Slider from './Slider';
 const Main = styled.main`
   padding: 2rem;
   color: #333;
+  height: 83vh;
+`;
+
+const Title1 = styled.div`
+  font-weight: bold;
+  // font-size: 70px;
+  font-family: New York;
+  position: absolute;
+  left: 50%;
+  top: 40%;
+  transform: translate(-50%, -50%);
+  text-align: center;
 `;
 
 const HighlightedText = styled.span`
   font-weight: bold;
   font-size: 70px;
-  font-family: rubik;
+  font-family: New York;
+  text-align: center;
+`;
+
+const Content = styled.div`
+  font-weight: bold;
+  // font-size: 70px;
+  font-family: New York;
+  position: flex;
 `;
 
 const Spacer = styled.div`
@@ -22,24 +42,16 @@ const Spacer = styled.div`
 const MainContent = () => {
   return (
     <Main>
-      <div style={{ flex: 1 }}>
+      <Title1>
         <h1>Welcome to <br /><HighlightedText>Designr<br />.Pro</HighlightedText></h1>
-      </div>
-      <div style={{ flex: 1 }}>
-        <iframe 
-          src="https://embed.lottiefiles.com/animation/73347" 
-          style={{ width: '100%', height: '200px', border: 'none' }} 
-          allowFullScreen
-        />
-      </div>
-      <Spacer height="2rem" />
-      <div>
-        <h2>Pages</h2>
+      </Title1>
+      <Spacer height="55vh" />
+      <Content>
+        {/* <h2>Pages</h2> */}
         <Slider />
-      </div>
+      </Content>
     </Main>
   );
 };  
-
 
 export default MainContent;

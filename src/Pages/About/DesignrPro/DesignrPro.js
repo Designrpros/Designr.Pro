@@ -7,7 +7,6 @@ const AboutContainer = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 100vh;
   padding: 0 20px;
   box-sizing: border-box;
   text-align: center;
@@ -15,7 +14,7 @@ const AboutContainer = styled.div`
 
 const Title = styled.h1`
   font-size: 2.5em;
-  margin-top: 200px;
+  // margin-top: 200px;
 
 `;
 

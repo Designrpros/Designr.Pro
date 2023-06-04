@@ -8,7 +8,7 @@ const CardContainer = styled(Link)`
   width: 200px;
   height: 200px;
   margin: 10px;
-  background-color: #fff;
+  background-color: #FCFCFE;
   border-radius: 10px;
   display: flex;
   flex-direction: column;

@@ -1,4 +1,5 @@
 import React, {createContext, useState, useEffect } from 'react';
+import styled from 'styled-components';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Navbar from './Top_Level_Components/Navbar/Navbar';
 import Sidebar from './Top_Level_Components/Sidebar/Sidebar';
@@ -19,14 +20,26 @@ import Modal from './Components/Modal';
 import UserContext from './UserContext';
 import Cookies from 'js-cookie';
 
+import Group4 from './Assets/Group4.svg';
+
 
 import { createGlobalStyle } from 'styled-components';
 import Blog from './Pages/Dimension/Dimension.js';
 
 const GlobalStyle = createGlobalStyle`
   body {
-    background-color: #FBF7F6; 
+    background-color: #FCFCFE; 
+    font-family: New York;
   }
+`;
+
+const Background1 = styled.div`
+  width: 100%;
+  height: 100%;
+  background-image: url(${Group4});
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
 `;
 
 
@@ -69,7 +82,9 @@ const App = () => {
 
 
   return (
+    
     <UserContext.Provider value={{ isLoggedIn, setIsLoggedIn }}>
+    <Background1>
     <Router>
       <GlobalStyle />
       <Navbar toggleSidebar={toggleSidebar} handleLoginClick={handleLoginClick} />
@@ -97,7 +112,9 @@ const App = () => {
 
 
     </Router>
+    </Background1>
     </UserContext.Provider>
+    
   );
 };
 

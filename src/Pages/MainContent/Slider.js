@@ -15,10 +15,9 @@ const SliderContainer = styled.div`
 const Slider = () => {
   return (
     <SliderContainer>
-      <Card to="/nomad" icon="home" title="Nomad"></Card>
       <Card to="/About/designrpro" icon="user" title="About"></Card>
+      <Card to="/blog" icon="note" title="Blog"></Card>
       <Card to="/contact" icon="envelope" title="Contact"></Card>
-      <Card to="/note" icon="note" title="Note"></Card>
       <Card to="/sketch" icon="envelope" title="Sketch"></Card>
       <Card to="/mindnode" icon="envelope" title="MindNode"></Card>
     </SliderContainer>
