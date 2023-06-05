@@ -4,6 +4,7 @@ import { db } from '../../FirebaseSDK.js';
 import { collection, getDocs, orderBy, query } from 'firebase/firestore';
 import styled from 'styled-components';
 import BlogImg from './BlogImg.webp';
+import { AiOutlineSearch } from 'react-icons/ai';
 
 const BlogContainer = styled.div`
   display: flex;
@@ -30,7 +31,7 @@ const PostGrid = styled.div`
 `;
 
 const PostCard = styled.div`
-  border: 1px solid #ddd;
+  // border: 1px solid #ddd;
   // border-radius: 10px;
   // padding: 20px;
   background-color: #fff;
@@ -74,6 +75,8 @@ const FilterButton = styled.button`
 
 const Blog = () => {
   const [posts, setPosts] = useState([]);
+  const [searchTerm, setSearchTerm] = useState('');
+  const [showSearch, setShowSearch] = useState(false); // Add this line
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -95,15 +98,23 @@ const Blog = () => {
 
   return (
     <BlogContainer>
-      {/* <BlogImage src={BlogImg} alt="Blog" /> */}
       <BlogTitle>Blog</BlogTitle>
+      
+      {showSearch && <input type="text" placeholder="Search..." onChange={event => setSearchTerm(event.target.value)} />} {/* Modify this line */}
       <FilterMenu>
+        <FilterButton> <AiOutlineSearch onClick={() => setShowSearch(!showSearch)} /></FilterButton>
         <FilterButton>All</FilterButton>
         <FilterButton>Recent</FilterButton>
         <FilterButton>Starred</FilterButton>
       </FilterMenu>
       <PostGrid>
-        {posts.map((post, index) => (
+        {posts.filter((post) => {
+          if(searchTerm === "") {
+            return post;
+          } else if(post.title.toLowerCase().includes(searchTerm.toLowerCase())) {
+            return post;
+          }
+        }).map((post, index) => (
           <PostCard key={index} onClick={() => handleOpenPost(post.id)}>
             <PostImage src={post.image} alt={post.title} /> {/* Use the image from the database */}
             <PostTitle>{post.title}</PostTitle>
