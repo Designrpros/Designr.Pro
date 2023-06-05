@@ -6,6 +6,7 @@ import styled from 'styled-components';
 import { AiOutlineArrowLeft, AiFillDelete } from 'react-icons/ai';
 import ReactQuill from 'react-quill';
 import 'quill/dist/quill.snow.css'; // import styles
+import BlogImg from './BlogImg.webp';
 
 
 const EditorContainer = styled.div`
@@ -61,7 +62,7 @@ const BlogEditor = () => {
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
   const navigate = useNavigate();
-
+  const [image, setImage] = useState(BlogImg); // Initialize image state with the default image
 
   // Log the postId
   console.log(postId);
@@ -75,6 +76,7 @@ const BlogEditor = () => {
           const postData = postDoc.data();
           setTitle(postData.title);
           setContent(postData.content);
+          setImage(postData.image || BlogImg); // Use the image from the database, or the default image if it doesn't exist
         }
       }
     };
@@ -84,6 +86,10 @@ const BlogEditor = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+
+    // Extract the first image from the content
+    const firstImageMatch = content.match(/<img[^>]+src="([^">]+)"/);
+    const firstImageSrc = firstImageMatch ? firstImageMatch[1] : BlogImg;
   
     // Replace line breaks with a placeholder before saving the data
     const formattedContent = content.replace(/\n/g, '<br/>');
@@ -94,14 +100,16 @@ const BlogEditor = () => {
       await updateDoc(postRef, {
         title: title,
         content: content, // content is now HTML
-        date: new Date()
+        date: new Date(),
+        image: firstImageSrc // Save the image in the database
       });
       console.log("Document updated with ID: ", postId);
     } else {
       const docRef = await addDoc(collection(db, "posts"), {
         title: title,
         content: content, // content is now HTML
-        date: new Date()
+        date: new Date(),
+        image: firstImageSrc // Save the image in the database
       });
       console.log("Document written with ID: ", docRef.id);
     }
