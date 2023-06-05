@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { db } from '../../FirebaseSDK.js';
-import { collection, getDocs, orderBy, query } from 'firebase/firestore';
+import { collection, getDocs, orderBy, query, updateDoc, doc } from 'firebase/firestore';
 import styled from 'styled-components';
 import BlogImg from './BlogImg.webp';
-import { AiOutlineSearch } from 'react-icons/ai';
+import { AiOutlineSearch, AiOutlineUp, AiOutlineDown } from 'react-icons/ai';
 
 const BlogContainer = styled.div`
   display: flex;
@@ -31,9 +31,6 @@ const PostGrid = styled.div`
 `;
 
 const PostCard = styled.div`
-  // border: 1px solid #ddd;
-  // border-radius: 10px;
-  // padding: 20px;
   background-color: #fff;
   cursor: pointer;
 `;
@@ -46,14 +43,13 @@ const PostTitle = styled.h2`
 const PostDate = styled.p`
   color: #888;
   margin-bottom: 10px;
-  padding-left: 20px;
+  padding-left: 0px;
 `;
 
 const PostImage = styled.img`
   width: 100%;
   height: 200px;
   object-fit: cover;
-  // border-radius: 10px;
   margin-bottom: 10px;
 `;
 
@@ -73,23 +69,63 @@ const FilterButton = styled.button`
   padding 10px;
 `;
 
+const VoteContainer = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-left: 20px;
+`;
+
+const VoteButton = styled.button`
+  border: none;
+  background: none;
+  cursor: pointer;
+  font-size: 16px;
+  padding: 10px;
+`;
+
 const Blog = () => {
   const [posts, setPosts] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
-  const [showSearch, setShowSearch] = useState(false); // Add this line
+  const [showSearch, setShowSearch] = useState(false);
+  const [filter, setFilter] = useState('All'); // Add this line
   const navigate = useNavigate();
 
-  useEffect(() => {
-    const fetchPosts = async () => {
-      const postsCollection = collection(db, 'posts');
-      const q = query(postsCollection, orderBy("date", "desc"));
-      const postSnapshot = await getDocs(q);
-      const postList = postSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
-      setPosts(postList);
-    };
-
+  const handleUpvote = async (postId, currentUpvotes) => {
+    const postRef = doc(db, 'posts', postId);
+    await updateDoc(postRef, {
+      upvotes: currentUpvotes + 1
+    });
     fetchPosts();
-  }, []);
+  };
+
+  const handleDownvote = async (postId, currentDownvotes) => {
+    const postRef = doc(db, 'posts', postId);
+    await updateDoc(postRef, {
+      downvotes: currentDownvotes + 1
+    });
+    fetchPosts();
+  };
+
+  const fetchPosts = async () => {
+    const postsCollection = collection(db, 'posts');
+    const q = query(postsCollection, orderBy("date", "desc"));
+    const postSnapshot = await getDocs(q);
+    let postList = postSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+
+    // Add these lines
+    if (filter === 'Vote') {
+      postList = postList.sort((a, b) => ((b.upvotes || 0) - (b.downvotes || 0)) - ((a.upvotes || 0) - (a.downvotes || 0)));
+    }
+
+    setPosts(postList);
+  };
+
+  // Modify this line
+  useEffect(() => {
+    fetchPosts();
+  }, [filter]);
+
 
   const handleOpenPost = (postId) => {
     console.log("Navigating to post with ID: ", postId);
@@ -100,12 +136,12 @@ const Blog = () => {
     <BlogContainer>
       <BlogTitle>Blog</BlogTitle>
       
-      {showSearch && <input type="text" placeholder="Search..." onChange={event => setSearchTerm(event.target.value)} />} {/* Modify this line */}
+      {showSearch && <input type="text" placeholder="Search..." onChange={event => setSearchTerm(event.target.value)} />}
       <FilterMenu>
         <FilterButton> <AiOutlineSearch onClick={() => setShowSearch(!showSearch)} /></FilterButton>
-        <FilterButton>All</FilterButton>
-        <FilterButton>Recent</FilterButton>
-        <FilterButton>Starred</FilterButton>
+        <FilterButton onClick={() => setFilter('All')}>All</FilterButton>
+        <FilterButton onClick={() => setFilter('Recent')}>Recent</FilterButton>
+        <FilterButton onClick={() => setFilter('Vote')}>Vote</FilterButton>
       </FilterMenu>
       <PostGrid>
         {posts.filter((post) => {
@@ -116,9 +152,16 @@ const Blog = () => {
           }
         }).map((post, index) => (
           <PostCard key={index} onClick={() => handleOpenPost(post.id)}>
-            <PostImage src={post.image} alt={post.title} /> {/* Use the image from the database */}
+            <PostImage src={post.image} alt={post.title} />
             <PostTitle>{post.title}</PostTitle>
-            <PostDate>{post.date && post.date.toDate().toLocaleDateString()}</PostDate>
+            <VoteContainer>
+              <PostDate>{post.date && post.date.toDate().toLocaleDateString()}</PostDate>
+              <div>
+                <span>{(post.upvotes || 0) - (post.downvotes || 0)}</span>
+                <VoteButton onClick={(e) => {e.stopPropagation(); handleUpvote(post.id, post.upvotes || 0);}}><AiOutlineUp /></VoteButton>
+                <VoteButton onClick={(e) => {e.stopPropagation(); handleDownvote(post.id, post.downvotes || 0);}}><AiOutlineDown /></VoteButton>
+              </div>
+            </VoteContainer>
           </PostCard>
         ))}
       </PostGrid>
