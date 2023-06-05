@@ -9,7 +9,27 @@ import 'quill/dist/quill.snow.css'; // import styles
 import BlogImg from './BlogImg.webp';
 
 
+const modules = {
+  toolbar: [
+    ['bold', 'italic', 'underline', 'strike'],        // toggled buttons
+    ['blockquote', 'code-block'],
+    [{ 'header': 1 }, { 'header': 2 }],               // custom button values
+    [{ 'list': 'ordered'}, { 'list': 'bullet' }],
+    [{ 'script': 'sub'}, { 'script': 'super' }],      // superscript/subscript
+    [{ 'indent': '-1'}, { 'indent': '+1' }],          // outdent/indent
+    [{ 'direction': 'rtl' }],                         // text direction
+    [{ 'size': ['small', false, 'large', 'huge'] }],  // custom dropdown
+    [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
+    [{ 'color': [] }, { 'background': [] }],          // dropdown with defaults from theme
+    [{ 'font': [] }],
+    [{ 'align': [] }],
+    ['link', 'image', 'video'],
+    ['clean']                                         // remove formatting button
+  ]
+};
+
 const EditorContainer = styled.div`
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -50,11 +70,11 @@ const EditorSubmit = styled.input`
   cursor: pointer;
 `;
 
-const EditorHeader = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: right;
-  width: 100%;
+const BackButton = styled(AiOutlineArrowLeft)`
+  position: absolute;
+  top: 10px;
+  left: 1px;
+  cursor: pointer;
 `;
 
 const BlogEditor = () => {
@@ -118,25 +138,13 @@ const BlogEditor = () => {
     setContent('');
   };
   
-  const handleDeleteDraft = async () => {
-    if (postId) {
-      await deleteDoc(doc(db, 'posts', postId));
-      console.log("Document deleted with ID: ", postId);
-    }
-    navigate('/blog/blogadmin');
-  };
-  
 
   return (
     <EditorContainer>
-      
+      <BackButton size={24} onClick={() => navigate('/blog/blogadmin')} />
       <EditorForm onSubmit={handleSubmit}>
         <EditorInput type="text" value={title} onChange={e => setTitle(e.target.value)} placeholder="Title" />
-        <EditorHeader>
-      <AiOutlineArrowLeft size={24} onClick={() => navigate('/blog/blogadmin')} />
-        <AiFillDelete size={24} onClick={handleDeleteDraft} />
-      </EditorHeader>
-        <ReactQuill value={content} onChange={setContent} />
+        <ReactQuill value={content} onChange={setContent} modules={modules} />
         <EditorSubmit type="submit" value="Submit" />
       </EditorForm>
     </EditorContainer>

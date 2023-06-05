@@ -95,7 +95,7 @@ const Blog = () => {
 
   return (
     <BlogContainer>
-      <BlogImage src={BlogImg} alt="Blog" />
+      {/* <BlogImage src={BlogImg} alt="Blog" /> */}
       <BlogTitle>Blog</BlogTitle>
       <FilterMenu>
         <FilterButton>All</FilterButton>
