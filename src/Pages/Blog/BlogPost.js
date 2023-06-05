@@ -22,9 +22,15 @@ const PostDate = styled.p`
   /* Add your styles for the date here */
 `;
 
-const PostContent = styled.p`
+const PostContent = styled.div`
   /* Add your styles for the content here */
+  
+  img {
+    max-width: 100%;  // This will make the image responsive, it will never stretch larger than its original width.
+    height: auto;  // This will maintain the aspect ratio of the image.
+  }
 `;
+
 
 const BackButton = styled.button`
   position: absolute;
