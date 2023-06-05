@@ -48,6 +48,7 @@ const EditorForm = styled.form`
   display: flex;
   flex-direction: column;
   width: 100%;
+  
 `;
 
 const EditorInput = styled.input`
@@ -56,7 +57,7 @@ const EditorInput = styled.input`
   background: none;
   border: none;
   font-size: 20px; // Increase the font size
-  height: 50px; // Increase the height of the input field
+  height: 30px; // Increase the height of the input field
   width: 100%; // Make the input field take up the full width of its container
 `;
 
@@ -77,12 +78,33 @@ const BackButton = styled(AiOutlineArrowLeft)`
   cursor: pointer;
 `;
 
+const CategoryTagsContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
+`;
+
+const CategoryInput = styled(EditorInput)`
+  width: 45%;
+`;
+
+const TagsInput = styled(EditorInput)`
+  width: 45%;
+`;
+
+const StyledReactQuill = styled(ReactQuill)`
+  height: 400px; // Adjust this value to your liking
+  margin-bottom: 90px;
+`;
+
 const BlogEditor = () => {
   const { postId } = useParams();
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
   const navigate = useNavigate();
   const [image, setImage] = useState(BlogImg); // Initialize image state with the default image
+
+  const [category, setCategory] = useState('');
+  const [tags, setTags] = useState(''); 
 
   // Log the postId
   console.log(postId);
@@ -97,6 +119,8 @@ const BlogEditor = () => {
           setTitle(postData.title);
           setContent(postData.content);
           setImage(postData.image || BlogImg); // Use the image from the database, or the default image if it doesn't exist
+          setCategory(postData.category || ''); // Add this line
+          setTags(postData.tags ? postData.tags.join(', ') : ''); // Add this line
         }
       }
     };
@@ -115,13 +139,16 @@ const BlogEditor = () => {
     const formattedContent = content.replace(/\n/g, '<br/>');
 
     // If postId exists, update the existing post. Otherwise, create a new post.
+    // If postId exists, update the existing post. Otherwise, create a new post.
     if (postId) {
       const postRef = doc(db, 'posts', postId);
       await updateDoc(postRef, {
         title: title,
         content: content, // content is now HTML
         date: new Date(),
-        image: firstImageSrc // Save the image in the database
+        image: firstImageSrc, // Save the image in the database
+        category: category, // Add this line
+        tags: tags.split(',').map(tag => tag.trim()) // Add this line
       });
       console.log("Document updated with ID: ", postId);
     } else {
@@ -129,7 +156,9 @@ const BlogEditor = () => {
         title: title,
         content: content, // content is now HTML
         date: new Date(),
-        image: firstImageSrc // Save the image in the database
+        image: firstImageSrc, // Save the image in the database
+        category: category, // Add this line
+        tags: tags.split(',').map(tag => tag.trim()) // Add this line
       });
       console.log("Document written with ID: ", docRef.id);
     }
@@ -139,13 +168,16 @@ const BlogEditor = () => {
   };
   
   
-
   return (
     <EditorContainer>
       <BackButton size={24} onClick={() => navigate('/blog/blogadmin')} />
       <EditorForm onSubmit={handleSubmit}>
         <EditorInput type="text" value={title} onChange={e => setTitle(e.target.value)} placeholder="Title" />
-        <ReactQuill value={content} onChange={setContent} modules={modules} />
+        <CategoryTagsContainer>
+          <CategoryInput type="text" value={category} onChange={e => setCategory(e.target.value)} placeholder="Category" /> 
+          <TagsInput type="text" value={tags} onChange={e => setTags(e.target.value)} placeholder="Tags (comma-separated)" /> 
+        </CategoryTagsContainer>
+        <StyledReactQuill value={content} onChange={setContent} modules={modules} />
         <EditorSubmit type="submit" value="Submit" />
       </EditorForm>
     </EditorContainer>
