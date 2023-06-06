@@ -80,17 +80,6 @@ const Div1 = styled.button`
     transform: translate(-50%, -50%);
 `;
 
-const Category = styled.p`
-  font-weight: bold;
-  padding-left: 20px;
-`;
-
-const Tags = styled.p`
-  color: #888;
-  padding-left: 20px;
-`;
-
-
 
 const BlogAdmin = () => {
     const { isLoggedIn } = useContext(UserContext);
@@ -116,18 +105,9 @@ const BlogAdmin = () => {
     const fetchPosts = async () => {
       const postsCollection = collection(db, 'posts');
       const postSnapshot = await getDocs(postsCollection);
-      let postList = postSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
-    
-      // Sort the posts by date
-      postList.sort((a, b) => {
-        const dateA = a.date && typeof a.date.toDate === 'function' ? a.date.toDate() : new Date();
-        const dateB = b.date && typeof b.date.toDate === 'function' ? b.date.toDate() : new Date();
-        return dateB - dateA; // This will sort in descending order. Use dateA - dateB for ascending order.
-      });
-    
+      const postList = postSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
       setPosts(postList);
     };
-    
   
     useEffect(() => {
       fetchPosts();
@@ -151,19 +131,17 @@ const BlogAdmin = () => {
             </AddButton>
           </BlogAdminTitle>
           <PostGrid>
-          {posts.map((post, index) => (
-            <PostCard key={index} onClick={() => handleOpenPost(post.id)}>
-              <PostImage src={post.image} alt={post.title} /> {/* Use the image from the database */}
-              <PostTitle>{post.title}</PostTitle>
-              <Category>{post.category}</Category>
-              <Tags>{post.tags && Array.isArray(post.tags) ? post.tags.join(', ') : ''}</Tags>
-              <PostDate>{post.date && typeof post.date.toDate === 'function' ? post.date.toDate().toLocaleDateString() : 'No date'}</PostDate>
-              <IconContainer>
-                <Icon onClick={(e) => {e.stopPropagation(); handleEditPost(post.id);}}><AiFillEdit size={24} /></Icon>
-                <Icon onClick={(e) => {e.stopPropagation(); handleDeletePost(post.id);}}><AiFillDelete size={24} /></Icon>
-              </IconContainer>
-            </PostCard>
-          ))}
+            {posts.map((post, index) => (
+              <PostCard key={index} onClick={() => handleOpenPost(post.id)}>
+                <PostImage src={post.image} alt={post.title} /> {/* Use the image from the database */}
+                <PostTitle>{post.title}</PostTitle>
+                <PostDate>{post.date && typeof post.date.toDate === 'function' ? post.date.toDate().toLocaleDateString() : 'No date'}</PostDate>
+                <IconContainer>
+                  <Icon onClick={(e) => {e.stopPropagation(); handleEditPost(post.id);}}><AiFillEdit size={24} /></Icon>
+                  <Icon onClick={(e) => {e.stopPropagation(); handleDeletePost(post.id);}}><AiFillDelete size={24} /></Icon>
+                </IconContainer>
+              </PostCard>
+            ))}
           </PostGrid>
         </BlogAdminContainer>
       );
