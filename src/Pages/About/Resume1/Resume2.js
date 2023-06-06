@@ -86,10 +86,10 @@ const Resume2 = () => {
         </ContentColumn>
       </SectionContainer>
       <SectionContainer>
-        <Column>Work</Column>
+        <Column>Experience</Column>
         <ContentColumn>
           <ResumeItem>
-            <ResumeTitle>Job Title 1</ResumeTitle>
+            <ResumeTitle>Travel</ResumeTitle>
             <ResumeDate>2020 - Present</ResumeDate>
             <ResumeDescription>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero.</ResumeDescription>
           </ResumeItem>
