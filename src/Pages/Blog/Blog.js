@@ -108,7 +108,8 @@ const Blog = () => {
   const [posts, setPosts] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
   const [showSearch, setShowSearch] = useState(false);
-  const [filter, setFilter] = useState('All'); // Add this line
+  const [filter, setFilter] = useState('All');
+  const [categoryFilter, setCategoryFilter] = useState(''); // Add this line
   const navigate = useNavigate();
   const [categories, setCategories] = useState([]);
 
@@ -133,35 +134,36 @@ const Blog = () => {
     const q = query(postsCollection, orderBy("date", "desc"));
     const postSnapshot = await getDocs(q);
     let postList = postSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
-
+  
     if (filter === 'Vote') {
       postList = postList.sort((a, b) => ((b.upvotes || 0) - (b.downvotes || 0)) - ((a.upvotes || 0) - (a.downvotes || 0)));
     }
-
+  
+    if (categoryFilter) {
+      postList = postList.filter(post => post.category === categoryFilter);
+    }
+  
     setPosts(postList);
-
-    // Extract unique categories from posts
-    const uniqueCategories = [...new Set(postList.map(post => post.category))];
-    setCategories(uniqueCategories);
+  
   };
+  
 
   useEffect(() => {
     fetchPosts();
-  }, [filter]);
+  }, [filter, categoryFilter]); // Add categoryFilter here
+  
 
   useEffect(() => {
     const fetchCategories = async () => {
-      const categoriesCollection = collection(db, 'categories');
-      const categorySnapshot = await getDocs(categoriesCollection);
-      const categoryList = categorySnapshot.docs.map(doc => doc.data().name);
-      console.log(categoryList); // Log the categories to the console
-      setCategories(categoryList);
+      const postsCollection = collection(db, 'posts');
+      const postSnapshot = await getDocs(postsCollection);
+      const postList = postSnapshot.docs.map(doc => doc.data());
+      const uniqueCategories = [...new Set(postList.map(post => post.category))];
+      setCategories(uniqueCategories);
     };
   
     fetchCategories();
   }, []);
-  
-  
   
   const handleOpenPost = (postId) => {
     console.log("Navigating to post with ID: ", postId);
@@ -171,6 +173,12 @@ const Blog = () => {
   const categoryOptions = categories.map((category, index) => (
     <option key={index} value={category}>{category}</option>
   ));
+
+  const handleCategoryFilterChange = (e) => {
+    setCategoryFilter(e.target.value);
+    console.log(e.target.value); // Log the new categoryFilter state
+  };
+  
 
   return (
     <BlogContainer>
@@ -182,10 +190,11 @@ const Blog = () => {
           <FilterButton onClick={() => setFilter('All')}>All</FilterButton>
           <FilterButton onClick={() => setFilter('Recent')}>Recent</FilterButton>
           <FilterButton onClick={() => setFilter('Vote')}>Vote</FilterButton>
-          <FilterSelect onChange={(e) => setFilter(e.target.value)}>
-      <option value="">Category</option>
-      {categoryOptions}
-    </FilterSelect>
+          <FilterSelect value={categoryFilter} onChange={handleCategoryFilterChange}>
+  <option value="">Category</option>
+  {categoryOptions}
+</FilterSelect>
+
         </FilterMenu>
       <PostGrid>
       {posts
@@ -197,7 +206,7 @@ const Blog = () => {
     }
   })
   .filter((post) => {
-    if (filter === post.category || filter === 'All' || filter === 'Recent' || filter === 'Vote') {
+    if (categoryFilter === post.category || categoryFilter === '') {
       return post;
     }
   })

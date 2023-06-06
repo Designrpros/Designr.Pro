@@ -136,7 +136,7 @@ const BlogEditor = () => {
     const firstImageSrc = firstImageMatch ? firstImageMatch[1] : BlogImg;
   
     // Replace line breaks with a placeholder before saving the data
-    const formattedContent = content.replace(/\n/g, '<br/>');
+    // const formattedContent = content.replace(/\n/g, '<br/>');
 
     // If postId exists, update the existing post. Otherwise, create a new post.
     // If postId exists, update the existing post. Otherwise, create a new post.
