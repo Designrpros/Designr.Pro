@@ -4,6 +4,8 @@ import { Routes, Route, Link } from 'react-router-dom';
 import CV from './CV/CV.js';
 import DesignrPro from './DesignrPro/DesignrPro.js';
 import Gallery from './Gallery/Gallery.js';
+import Resume from './CV/Resume.js';
+import Resume1 from './Resume1/Resume1.js';
 
 const ToolbarContainer = styled.div`
   display: flex;
@@ -48,11 +50,15 @@ const About = () => {
         <ToolbarLink to="/about/gallery">
           Gallery
         </ToolbarLink>
+        <ToolbarLink to="/about/resume1">
+          Resume
+        </ToolbarLink>
       </ToolbarContainer>
       <Routes>
         <Route path="designrpro" element={<DesignrPro />} />
         <Route path="cv" element={<CV />} />
         <Route path="gallery" element={<Gallery />} />
+        <Route path="resume1" element={<Resume1 />} />
       </Routes>
       </AboutContainer>
   );
