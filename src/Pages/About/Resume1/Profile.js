@@ -88,7 +88,8 @@ const Profile = () => {
         <ContentContainer>
           <Name>Vegar Berentsen</Name>
           <Title>Designr & Developer</Title>
-          <Bio>Hi, I'm Vegar. I love designing and developing beautiful websites. Check out my work below!</Bio>
+          <Bio>I am a web designer and developer with experience in building and customizing websites. I love to create unique and modern designs. I like making stuff and putting it on the internet
+          </Bio>
           <SocialLinks>
             <StyledGithub />
             <StyledInstagram />

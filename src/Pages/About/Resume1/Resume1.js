@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import About from './About.js';
 import Resume2 from './Resume2.js';
 import Skills from './Skills';
-import Contact from './Contact';
+import Portfolio from './Portfolio.js';
 import Profile from './Profile.js';
 
 const CVContainer = styled.div`
@@ -19,6 +19,7 @@ const SegmentController = styled.div`
   width: 100%;
   padding: 20px 0;
   background: #fff;
+  flex-wrap: wrap;
 `;
 
 const SegmentButton = styled.button`
@@ -31,6 +32,10 @@ const SegmentButton = styled.button`
   &:hover {
     color: #344;
   }
+  @media (max-width: 600px) {
+    font-size: 1em;
+    margin-bottom: 10px;
+  }
 `;
 
 const Resume1 = () => {
@@ -41,20 +46,20 @@ const Resume1 = () => {
       case 'all':
         return (
           <>
-            {/* <About /> */}
-            {/* <Resume2 /> */}
-            {/* <Skills /> */}
-            {/* <Contact /> */}
+            <About />
+            <Resume2 />
+            <Skills />
+            <Portfolio />
           </>
         );
       case 'about':
-        // return <About />;
+        return <About />;
       case 'resume':
-        // return <Resume2 />;
+        return <Resume2 />;
       case 'skills':
-        // return <Skills />;
-      case 'contact':
-        // return <Contact />;
+        return <Skills />;
+      case 'portfolio':
+        return <Portfolio  />;
       default:
         return null;
     }
@@ -68,7 +73,7 @@ const Resume1 = () => {
         <SegmentButton selected={selectedSegment === 'about'} onClick={() => setSelectedSegment('about')}>About</SegmentButton>
         <SegmentButton selected={selectedSegment === 'resume'} onClick={() => setSelectedSegment('resume')}>Resume</SegmentButton>
         <SegmentButton selected={selectedSegment === 'skills'} onClick={() => setSelectedSegment('skills')}>Skills</SegmentButton>
-        <SegmentButton selected={selectedSegment === 'contact'} onClick={() => setSelectedSegment('contact')}>Contact</SegmentButton>
+        <SegmentButton selected={selectedSegment === 'portfolio'} onClick={() => setSelectedSegment('portfolio')}>Portfolio</SegmentButton>
       </SegmentController>
       {renderSegment()}
     </CVContainer>
