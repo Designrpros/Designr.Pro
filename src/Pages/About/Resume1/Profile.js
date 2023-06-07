@@ -89,7 +89,7 @@ const DownloadButton = styled.a`
   padding: 10px 20px;
   text-decoration: none;
   border-radius: 5px;
-  margin-left: 10px;
+  margin-right: 10px;
   &:hover {
     background: #444;
   }
@@ -109,10 +109,10 @@ const Profile = () => {
           I am a web designer and developer with experience in building and customizing websites. I love to create unique and modern designs. I like making stuff and putting it on the internet
           </Bio>
           <SocialLinks>
+            <DownloadButton href="/path/to/your/resume.pdf" download>Resume</DownloadButton>
             <StyledGithub />
             <StyledInstagram />
             <StyledLinkedin />
-            <DownloadButton href="/path/to/your/resume.pdf" download>Resume</DownloadButton>
           </SocialLinks>
         </ContentContainer>
       </ProfileCard>
