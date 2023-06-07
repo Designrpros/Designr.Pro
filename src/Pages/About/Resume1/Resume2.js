@@ -37,7 +37,11 @@ const Column = styled.div`
 const ContentColumn = styled.div`
   flex: 2;
   padding-left: 20px;
+  @media (max-width: 600px) {
+    // padding: 10px
+    margin-top: 20px;
   
+  }
 `;
 
 const ResumeItem = styled.div`

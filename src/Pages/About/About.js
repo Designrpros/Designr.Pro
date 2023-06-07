@@ -44,21 +44,23 @@ const About = () => {
         <ToolbarLink to="/about/designrpro">
           About
         </ToolbarLink>
-        <ToolbarLink to="/about/cv">
+        {/* <ToolbarLink to="/about/cv">
+          CV
+        </ToolbarLink> */}
+        <ToolbarLink to="/about/resume1">
           CV
         </ToolbarLink>
         <ToolbarLink to="/about/gallery">
           Gallery
         </ToolbarLink>
-        <ToolbarLink to="/about/resume1">
-          Resume
-        </ToolbarLink>
+       
       </ToolbarContainer>
       <Routes>
         <Route path="designrpro" element={<DesignrPro />} />
-        <Route path="cv" element={<CV />} />
-        <Route path="gallery" element={<Gallery />} />
+        {/* <Route path="cv" element={<CV />} /> */}
         <Route path="resume1" element={<Resume1 />} />
+        <Route path="gallery" element={<Gallery />} />
+        
       </Routes>
       </AboutContainer>
   );

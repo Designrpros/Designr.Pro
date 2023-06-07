@@ -38,6 +38,8 @@ const SegmentButton = styled.button`
   }
 `;
 
+
+
 const Resume1 = () => {
   const [selectedSegment, setSelectedSegment] = useState('all');
 

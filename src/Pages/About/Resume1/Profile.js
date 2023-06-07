@@ -46,8 +46,11 @@ const Bio = styled.p`
 `;
 
 const SocialLinks = styled.div`
+  display: flex;
+  align-items: center;
   margin-top: 20px;
 `;
+
 
 const StyledGithub = styled(FaGithub)`
   color: black;
@@ -79,6 +82,20 @@ const StyledLinkedin = styled(FaLinkedin)`
   }
 `;
 
+const DownloadButton = styled.a`
+  display: inline-block;
+  background: #333;
+  color: #fff;
+  padding: 10px 20px;
+  text-decoration: none;
+  border-radius: 5px;
+  margin-left: 10px;
+  &:hover {
+    background: #444;
+  }
+`;
+
+
 const Profile = () => {
     return (
       <ProfileCard>
@@ -88,17 +105,20 @@ const Profile = () => {
         <ContentContainer>
           <Name>Vegar Berentsen</Name>
           <Title>Designr & Developer</Title>
-          <Bio>I am a web designer and developer with experience in building and customizing websites. I love to create unique and modern designs. I like making stuff and putting it on the internet
+          <Bio>
+          I am a web designer and developer with experience in building and customizing websites. I love to create unique and modern designs. I like making stuff and putting it on the internet
           </Bio>
           <SocialLinks>
             <StyledGithub />
             <StyledInstagram />
             <StyledLinkedin />
+            <DownloadButton href="/path/to/your/resume.pdf" download>Resume</DownloadButton>
           </SocialLinks>
         </ContentContainer>
       </ProfileCard>
     );
   };
+  
   
 
 export default Profile;

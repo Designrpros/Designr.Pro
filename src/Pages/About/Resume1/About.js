@@ -7,11 +7,12 @@ const AboutContainer = styled.div`
   grid-template-columns: 1fr 2fr;
   gap: 20px;
   width: 100%;
-  padding: 20px;
+  padding: 30px;
   background: #fff;
 
   @media (max-width: 600px) {
     grid-template-columns: 1fr;
+    margin-left: 20px;
   }
 `;
 
@@ -25,6 +26,11 @@ const Content = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  margin-top: 25px;
+  @media (max-width: 600px) {
+    margin-top: -10px;
+    margin-left: 25px;
+  }
 `;
 
 const Item = styled.div`
@@ -45,15 +51,15 @@ const About = () => {
       <Content>
         <Item>
           <Icon><FaEnvelope /></Icon>
-          <span>vegar@designr.pro</span>
+          <span>VegarBerentsen@gmail.com</span>
         </Item>
         <Item>
           <Icon><FaPhone /></Icon>
-          <span>+47 123 45 678</span>
+          <span>+47 485 96 755</span>
         </Item>
         <Item>
           <Icon><FaHome /></Icon>
-          <span>123 Street, City, Country</span>
+          <span>Ovenbakken 31 A, Østerås, Norway</span>
         </Item>
       </Content>
     </AboutContainer>
