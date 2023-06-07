@@ -5,6 +5,9 @@ import Resume2 from './Resume2.js';
 import Skills from './Skills';
 import Portfolio from './Portfolio.js';
 import Profile from './Profile.js';
+import Contact from './Contact.js';
+
+
 
 const CVContainer = styled.div`
   display: flex;
@@ -52,6 +55,7 @@ const Resume1 = () => {
             <Resume2 />
             <Skills />
             <Portfolio />
+            <Contact />
           </>
         );
       case 'about':
@@ -62,6 +66,8 @@ const Resume1 = () => {
         return <Skills />;
       case 'portfolio':
         return <Portfolio  />;
+      case 'contact':
+        return <Contact  />;
       default:
         return null;
     }
@@ -76,6 +82,7 @@ const Resume1 = () => {
         <SegmentButton selected={selectedSegment === 'resume'} onClick={() => setSelectedSegment('resume')}>Resume</SegmentButton>
         <SegmentButton selected={selectedSegment === 'skills'} onClick={() => setSelectedSegment('skills')}>Skills</SegmentButton>
         <SegmentButton selected={selectedSegment === 'portfolio'} onClick={() => setSelectedSegment('portfolio')}>Portfolio</SegmentButton>
+        <SegmentButton selected={selectedSegment === 'contact'} onClick={() => setSelectedSegment('contact')}>Contact</SegmentButton>
       </SegmentController>
       {renderSegment()}
     </CVContainer>

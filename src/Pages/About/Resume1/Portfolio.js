@@ -11,6 +11,8 @@ const PortfolioContainer = styled.div`
 
   @media (min-width: 768px) {
     grid-template-columns: 1fr 2fr;
+    
+  
   }
 `;
 
@@ -29,6 +31,7 @@ const PortfolioGrid = styled.div`
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   gap: 20px;
+  margin-top: 25px;
 
   @media (min-width: 768px) {
     grid-column: 2 / 3;

@@ -187,7 +187,6 @@ const Blog = () => {
       {showSearch && <input type="text" placeholder="Search..." onChange={event => setSearchTerm(event.target.value)} />}
       <FilterMenu>
           <FilterButton> <AiOutlineSearch onClick={() => setShowSearch(!showSearch)} /></FilterButton>
-          <FilterButton onClick={() => setFilter('All')}>All</FilterButton>
           <FilterButton onClick={() => setFilter('Recent')}>Recent</FilterButton>
           <FilterButton onClick={() => setFilter('Vote')}>Vote</FilterButton>
           <FilterSelect value={categoryFilter} onChange={handleCategoryFilterChange}>
