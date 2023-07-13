@@ -106,7 +106,7 @@ const Profile = () => {
           <Name>Vegar Berentsen</Name>
           <Title>Designr & Developer</Title>
           <Bio>
-          I am a web designer and developer with experience in building and customizing websites. I love to create unique and modern designs. I like making stuff and putting it on the internet
+          I am a web designer and developer with experience in building and customizing websites. I love to create unique and modern designs. Am Currently Developing an app for macos and ios, called Mapr.
           </Bio>
           <SocialLinks>
             <DownloadButton href="/path/to/your/resume.pdf" download>Resume</DownloadButton>

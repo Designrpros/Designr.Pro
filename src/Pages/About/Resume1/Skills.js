@@ -94,7 +94,7 @@ const Skills = () => {
           <SkillName>SwiftUI</SkillName>
           <SkillBarContainer>
             <SkillBarBackground>
-              <SkillBar width="70%" />
+              <SkillBar width="80%" />
             </SkillBarBackground>
           </SkillBarContainer>
         </SkillItem>
@@ -102,7 +102,7 @@ const Skills = () => {
           <SkillName>React</SkillName>
           <SkillBarContainer>
             <SkillBarBackground>
-              <SkillBar width="80%" />
+              <SkillBar width="70%" />
             </SkillBarBackground>
           </SkillBarContainer>
         </SkillItem>
@@ -110,7 +110,7 @@ const Skills = () => {
           <SkillName>UX Design</SkillName>
           <SkillBarContainer>
             <SkillBarBackground>
-              <SkillBar width="70%" />
+              <SkillBar width="75%" />
             </SkillBarBackground>
           </SkillBarContainer>
         </SkillItem>
