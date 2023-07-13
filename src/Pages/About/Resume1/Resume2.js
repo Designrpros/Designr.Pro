@@ -104,7 +104,7 @@ const Resume2 = () => {
           </ResumeItem>
           <ResumeItem>
             <ResumeTitle>Travel</ResumeTitle>
-            <ResumeDate>2017 - 2020</ResumeDate>
+            <ResumeDate>2018 - 2019</ResumeDate>
             <ResumeDescription></ResumeDescription>
           </ResumeItem>
           <ResumeItem>
