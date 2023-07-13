@@ -38,7 +38,7 @@ const SkillItem = styled.li`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
 `;
 
 const SkillName = styled.span`
@@ -66,7 +66,7 @@ const SkillBarBackground = styled.span`
 const SkillBar = styled.span`
   display: block;
   height: 20px;
-  background: #888;
+  background: #333;
   width: ${props => props.width};
   border-radius: 10px;
   position: absolute;

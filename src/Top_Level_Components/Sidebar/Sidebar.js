@@ -16,13 +16,17 @@ const Overlay = styled.div`
 `;
 
 const Link = styled(RouterLink)`
+  display: flex;
   color: #fff;
+  padding: 10px;
   text-decoration: none;
-  font-family: 'Rubik', sans-serif;
-  font-weight: bold;
-
+  font-size: 1.2rem;
+  align-items: center;
   &:hover {
-    color: #ddd;
+    background-color: #ddd;
+  }
+  &.active {
+    background-color: #ddd;
   }
 `;
 

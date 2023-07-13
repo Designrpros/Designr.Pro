@@ -34,7 +34,7 @@ const Input = styled.input`
   margin-bottom: 20px;
   border: 2px solid #ccc;
   border-radius: 4px;
-  background-color: #FBF7F6;
+//   background-color: #FBF7F6;
   transition: background-color 0.3s ease;
 
   &:focus {
@@ -50,7 +50,7 @@ const TextArea = styled.textarea`
   margin-bottom: 20px;
   border: 2px solid #ccc;
   border-radius: 4px;
-  background-color: #FBF7F6;
+//   background-color: #FBF7F6;
   transition: background-color 0.3s ease;
 
   &:focus {
@@ -82,7 +82,7 @@ const Contact = () => {
   const handleSubmit = event => {
     event.preventDefault();
   
-    emailjs.send('service_8itbdxm', 'template_bcgtjui', {
+    emailjs.send('service_5rn7vwb', 'template_8i03nto', {
       name: name,
       email: email,
       message: message

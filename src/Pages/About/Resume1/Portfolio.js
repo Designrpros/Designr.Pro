@@ -75,6 +75,11 @@ const Portfolio = () => {
           <p>React</p>
           <p>GitHub Repository</p>
         </PortfolioItem>
+        <PortfolioItem href="https://apps.apple.com/no/app/mapr/id6450910273?l=nb&mt=12">
+          <h2>Mapr</h2>
+          <p>SwiftUI</p>
+          <p>AppStore</p>
+        </PortfolioItem>
       </PortfolioGrid>
     </PortfolioContainer>
   );
