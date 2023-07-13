@@ -92,15 +92,30 @@ const Resume2 = () => {
       <SectionContainer>
         <Column>Experience</Column>
         <ContentColumn>
-          <ResumeItem>
-            <ResumeTitle>Travel</ResumeTitle>
-            <ResumeDate>2020 - Present</ResumeDate>
-            <ResumeDescription>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero.</ResumeDescription>
+        <ResumeItem>
+            <ResumeTitle>AppStore</ResumeTitle>
+            <ResumeDate>2023</ResumeDate>
+            <ResumeDescription></ResumeDescription>
           </ResumeItem>
           <ResumeItem>
-            <ResumeTitle>Job Title 2</ResumeTitle>
-            <ResumeDate>2018 - 2020</ResumeDate>
-            <ResumeDescription>Sed cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh elementum imperdiet.</ResumeDescription>
+            <ResumeTitle>Nøsen Yoga & Fjellhotell</ResumeTitle>
+            <ResumeDate>2021 & 2022</ResumeDate>
+            <ResumeDescription></ResumeDescription>
+          </ResumeItem>
+          <ResumeItem>
+            <ResumeTitle>Travel</ResumeTitle>
+            <ResumeDate>2017 - 2020</ResumeDate>
+            <ResumeDescription></ResumeDescription>
+          </ResumeItem>
+          <ResumeItem>
+            <ResumeTitle>Electrician at Bærum Elektropartner AS</ResumeTitle>
+            <ResumeDate>2012 - 2017</ResumeDate>
+            <ResumeDescription></ResumeDescription>
+          </ResumeItem>
+          <ResumeItem>
+            <ResumeTitle>Sail Instructur at Bærum Seilforening</ResumeTitle>
+            <ResumeDate>2010 - 2016</ResumeDate>
+            <ResumeDescription></ResumeDescription>
           </ResumeItem>
           {/* Add more ResumeItems as needed */}
         </ContentColumn>
