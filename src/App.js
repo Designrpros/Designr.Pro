@@ -56,7 +56,7 @@ const AppAdsTxt = () => {
 };
 
 const App = () => {
-  usePageTracking(); // This will track each page view
+  //usePageTracking(); // This will track each page view
 
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [isChatbotOpen, setIsChatbotOpen] = useState(false);
