@@ -84,6 +84,39 @@ const Footer = styled.footer`
   margin-top: 30px;
 `;
 
+
+const SliderSection = styled.section`
+  background-image: url(${MaprImage});
+  background-size: cover;
+  background-position: center;
+  color: #fff;
+  padding: 40px 20px;
+  text-align: center;
+`;
+
+const Slider = styled.div`
+  max-width: 600px;
+  margin: 0 auto;
+  position: relative;
+`;
+
+const Slide = styled.div`
+  display: none;
+
+  &.active {
+    display: block;
+  }
+`;
+
+const SlideImage = styled.img`
+  width: 100%;
+  border-radius: 5px;
+`;
+
+const SlideDescription = styled.p`
+  margin-top: 15px;
+`;
+
 const Mapr = () => {
   return (
     <>
@@ -95,12 +128,22 @@ const Mapr = () => {
         </Header>
 
         <IntroSection>
-          <Image src={MaprImage} alt="Mapr Screenshot" />
           <div>
             <h2>Visualize Your Projects Geographically</h2>
             <p>Mapr offers a unique, map-based interface to manage projects across multiple sites, providing a spatial context to your project management.</p>
           </div>
         </IntroSection>
+
+        <SliderSection>
+          <h2>App Screenshots</h2>
+          <Slider>
+            <Slide className="active">
+              <SlideImage src={MaprImage} alt="Screenshot 1" />
+              <SlideDescription>Description for Screenshot 1</SlideDescription>
+            </Slide>
+            {/* Add more <Slide> components for additional screenshots */}
+          </Slider>
+        </SliderSection>
 
         <FeaturesSection>
           <h2>Key Features</h2>
