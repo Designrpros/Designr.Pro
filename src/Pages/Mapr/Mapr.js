@@ -1,6 +1,6 @@
 import React from 'react';
 import styled, { createGlobalStyle } from 'styled-components';
-import MaprImage from './MaprImage.png';
+import MaprImage from './MaprImage.jpeg';
 
 const GlobalStyle = createGlobalStyle`
   body {
