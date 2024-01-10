@@ -19,6 +19,7 @@ import Dimension from './Pages/Dimension/Dimension.js';
 import Modal from './Components/Modal';
 import UserContext from './UserContext';
 import Cookies from 'js-cookie';
+import Group4 from './Assets/Group4.svg';
 import { createGlobalStyle } from 'styled-components';
 import Blog from './Pages/Dimension/Dimension.js';
 
