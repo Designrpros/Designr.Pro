@@ -36,7 +36,6 @@ const IntroSection = styled.section`
   color: #fff;
   padding: 20px;
   margin-top: 20px;
-  border-radius: 10px;
 `;
 
 const Image = styled.img`
@@ -51,7 +50,7 @@ const FeaturesSection = styled.section`
   color: #000;
   padding: 20px;
   margin-top: 20px;
-  border-radius: 10px;
+  border-radius: 0; // Removed rounded borders
 `;
 
 const FeatureList = styled.ul`
@@ -60,8 +59,14 @@ const FeatureList = styled.ul`
   text-align: left;
 
   li {
-    margin-bottom: 10px;
+    margin-bottom: 15px;
     font-size: 16px;
+    border-bottom: 1px solid #333; // Adding a subtle border for each item
+    padding-bottom: 10px;
+
+    &:last-child {
+      border-bottom: none; // No border for the last item
+    }
   }
 `;
 
