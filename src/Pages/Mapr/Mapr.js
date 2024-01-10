@@ -1,31 +1,47 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled, { createGlobalStyle } from 'styled-components';
 import MaprImage from './MaprImage.png';
+import BackgroundImage from './background.jpg'; // Replace with your high-quality background image
+
+const GlobalStyle = createGlobalStyle`
+  body {
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #333;
+  }
+`;
 
 const Landing = styled.div`
+  background: url(${BackgroundImage}) no-repeat center center fixed;
+  background-size: cover;
+  color: white;
   text-align: center;
-  padding: 20px;
-  background: #f4f7f6; /* A light, neutral background color */
 `;
 
 const Header = styled.header`
-  background-color: #f8f9fa;
-  padding: 20px 0;
+  padding: 40px 20px;
+  background: rgba(0, 0, 0, 0.6); /* Semi-transparent overlay for readability */
 `;
 
 const Title = styled.h1`
-  color: #333;
+  font-size: 2.5em;
+  margin-bottom: 0.5em;
+`;
+
+const Subtitle = styled.p`
+  font-size: 1.2em;
+  margin-bottom: 2em;
 `;
 
 const IntroSection = styled.section`
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 20px;
-  background: white; /* A white background for contrast */
-  padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Adding a subtle shadow for depth */
+  padding: 40px 20px;
+  background: rgba(255, 255, 255, 0.9); /* Light background for content */
+  border-radius: 15px;
+  margin: 30px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 
   @media (min-width: 768px) {
     flex-direction: row;
@@ -34,58 +50,60 @@ const IntroSection = styled.section`
 
 const Image = styled.img`
   width: 100%;
-  max-width: 400px;
-  margin-bottom: 20px;
-
-  @media (min-width: 768px) {
-    margin-right: 20px;
-  }
+  max-width: 500px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 `;
 
 const FeaturesSection = styled.section`
-  text-align: left;
-  margin-top: 20px;
-  background: #eef2f1; /* A slightly different background for distinction */
-  padding: 20px;
-  border-radius: 8px;
+  background: rgba(0, 0, 0, 0.7);
+  padding: 40px 20px;
+  margin: 30px;
+  border-radius: 15px;
 `;
 
 const FeatureList = styled.ul`
-  list-style: none; /* Removes default list styling */
+  list-style: none;
   padding: 0;
+  text-align: left;
 
   li {
-    margin-bottom: 10px;
-    font-size: 16px;
+    margin-bottom: 15px;
+    font-size: 18px;
   }
 `;
 
 const TestimonialsSection = styled.section`
-  background-color: #e9ecef;
-  padding: 20px 0;
+  padding: 40px 20px;
+  background: rgba(255, 255, 255, 0.9);
+  margin: 30px;
+  border-radius: 15px;
 `;
 
 const Footer = styled.footer`
-  background-color: #343a40;
+  background-color: #222;
   color: white;
-  padding: 10px 0;
+  padding: 20px 0;
+  margin-top: 30px;
 `;
 
 const Mapr = () => {
   return (
-    <Landing>
-      <Header>
-        <Title>Mapr - Project Management, Redefined</Title>
-        <p>Revolutionizing project management for Tradesmen with a map-based interface.</p>
-      </Header>
+    <>
+      <GlobalStyle />
+      <Landing>
+        <Header>
+          <Title>Mapr - Project Management, Redefined</Title>
+          <Subtitle>Revolutionizing project management for Tradesmen with a map-based interface.</Subtitle>
+        </Header>
 
-      <IntroSection>
-        <Image src={MaprImage} alt="Mapr Screenshot" />
-        <div>
-          <h2>Visualize Your Projects Geographically</h2>
-          <p>Mapr offers a unique, map-based interface to manage projects across multiple sites, providing a spatial context to your project management.</p>
-        </div>
-      </IntroSection>
+        <IntroSection>
+          <Image src={MaprImage} alt="Mapr Screenshot" />
+          <div>
+            <h2>Visualize Your Projects Geographically</h2>
+            <p>Mapr offers a unique, map-based interface to manage projects across multiple sites, providing a spatial context to your project management.</p>
+          </div>
+        </IntroSection>
 
       <FeaturesSection>
         <h2>Key Features</h2>
@@ -113,9 +131,10 @@ const Mapr = () => {
       </TestimonialsSection>
 
       <Footer>
-        <p>© 2024 Mapr. All rights reserved.</p>
-      </Footer>
-    </Landing>
+          <p>© 2024 Mapr. All rights reserved.</p>
+        </Footer>
+      </Landing>
+    </>
   );
 };
 
