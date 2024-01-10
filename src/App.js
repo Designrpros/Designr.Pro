@@ -14,7 +14,7 @@ import ChatbotIcon from './Top_Level_Components/Chatbot/ChatbotIcon';
 import BlogPage from './Pages/Blog/BlogPage.js';
 import Nomad from './Pages/Nomad/Nomad.js';
 import Sketch from './Pages/Sketch/Sketch.js';
-import MindNode from './Pages/MindNode/MindNode.js';
+import Mapr from './Pages/Mapr/Mapr.js';
 import Dimension from './Pages/Dimension/Dimension.js';
 import Modal from './Components/Modal';
 import UserContext from './UserContext';
@@ -114,7 +114,7 @@ const App = () => {
   <Route path="/contact" element={<Contact />} />
   <Route path="/nomad" element={<Nomad />} />
   <Route path="/blog/*" element={<BlogPage />} />
-  <Route path="/mindnode" element={<MindNode />} />
+  <Route path="/mapr" element={<Mapr />} />
   <Route path="/sketch" element={<Sketch />} />
   <Route path="/Dimension" element={<Dimension />} />
   <Route path="/app-ads.txt" element={<AppAdsTxt />} />
