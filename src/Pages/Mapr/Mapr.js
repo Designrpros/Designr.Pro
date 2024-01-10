@@ -1,5 +1,5 @@
 import React from 'react';
-import './Assets/Mapr.png';
+import Mapr from './Assets/Mapr.png';
 
 const Mapr = () => {
   return (
@@ -10,7 +10,7 @@ const Mapr = () => {
       </header>
 
       <section className="mapr-intro">
-        <img src="mapr.png" alt="Mapr Screenshot" /> {/* Replace with a screenshot of your app */}
+        <img src={Mapr} alt="Mapr Screenshot" />
         <div>
           <h2>Visualize Your Projects Geographically</h2>
           <p>Mapr offers a unique, map-based interface to manage projects across multiple sites, providing a spatial context to your project management.</p>
