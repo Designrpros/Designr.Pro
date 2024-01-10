@@ -1,5 +1,5 @@
 import React from 'react';
-import MaprImage from './Assets/MaprImage.png';
+import MaprImage from './MaprImage.png';
 
 const Mapr = () => {
   return (
