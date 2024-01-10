@@ -22,6 +22,7 @@ import Cookies from 'js-cookie';
 import Group4 from './Assets/Group4.svg';
 import { createGlobalStyle } from 'styled-components';
 import Blog from './Pages/Dimension/Dimension.js';
+import usePageTracking from './src/usePageTracking';
 
 
 const GlobalStyle = createGlobalStyle`
@@ -55,6 +56,8 @@ const AppAdsTxt = () => {
 };
 
 const App = () => {
+  usePageTracking(); // This will track each page view
+
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [isChatbotOpen, setIsChatbotOpen] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
