@@ -22,7 +22,7 @@ import Cookies from 'js-cookie';
 import Group4 from './Assets/Group4.svg';
 import { createGlobalStyle } from 'styled-components';
 import Blog from './Pages/Dimension/Dimension.js';
-import usePageTracking from './src/usePageTracking';
+import usePageTracking from './usePageTracking';
 
 
 const GlobalStyle = createGlobalStyle`
