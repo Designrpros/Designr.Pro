@@ -1,26 +1,25 @@
 import React from 'react';
 import styled, { createGlobalStyle } from 'styled-components';
 import MaprImage from './MaprImage.png';
-import BackgroundImage from './background.jpg'; // Replace with your high-quality background image
 
 const GlobalStyle = createGlobalStyle`
   body {
     margin: 0;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    color: #333;
+    font-family: 'Courier New', Courier, monospace; // Retro-style font
+    background-color: #f0e4d7; // Vintage paper-like background color
   }
 `;
 
 const Landing = styled.div`
-  background: url(${BackgroundImage}) no-repeat center center fixed;
-  background-size: cover;
-  color: white;
   text-align: center;
+  padding: 20px;
 `;
 
 const Header = styled.header`
-  padding: 40px 20px;
-  background: rgba(0, 0, 0, 0.6); /* Semi-transparent overlay for readability */
+  background-color: #008080; // Teal, popular in vintage designs
+  color: #fff;
+  padding: 20px 0;
+  border-bottom: 5px solid #f2b90c; // Mustard yellow border
 `;
 
 const Title = styled.h1`
@@ -30,36 +29,29 @@ const Title = styled.h1`
 
 const Subtitle = styled.p`
   font-size: 1.2em;
-  margin-bottom: 2em;
 `;
 
 const IntroSection = styled.section`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 40px 20px;
-  background: rgba(255, 255, 255, 0.9); /* Light background for content */
-  border-radius: 15px;
-  margin: 30px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-
-  @media (min-width: 768px) {
-    flex-direction: row;
-  }
+  background-color: #ff7e67; // Soft red, typical of the 60s-80s
+  color: #fff;
+  padding: 20px;
+  margin-top: 20px;
+  border-radius: 10px;
 `;
 
 const Image = styled.img`
   width: 100%;
-  max-width: 500px;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  max-width: 400px;
+  margin-bottom: 20px;
+  border: 5px solid #fff; // White border for the image
 `;
 
 const FeaturesSection = styled.section`
-  background: rgba(0, 0, 0, 0.7);
-  padding: 40px 20px;
-  margin: 30px;
-  border-radius: 15px;
+  background-color: #f2b90c; // Mustard yellow background
+  color: #000;
+  padding: 20px;
+  margin-top: 20px;
+  border-radius: 10px;
 `;
 
 const FeatureList = styled.ul`
@@ -68,20 +60,20 @@ const FeatureList = styled.ul`
   text-align: left;
 
   li {
-    margin-bottom: 15px;
-    font-size: 18px;
+    margin-bottom: 10px;
+    font-size: 16px;
   }
 `;
 
 const TestimonialsSection = styled.section`
-  padding: 40px 20px;
-  background: rgba(255, 255, 255, 0.9);
-  margin: 30px;
-  border-radius: 15px;
+  background-color: #008080; // Teal background
+  color: #fff;
+  padding: 20px 0;
+  margin-top: 20px;
 `;
 
 const Footer = styled.footer`
-  background-color: #222;
+  background-color: #333; // Dark footer for contrast
   color: white;
   padding: 20px 0;
   margin-top: 30px;
@@ -105,9 +97,9 @@ const Mapr = () => {
           </div>
         </IntroSection>
 
-      <FeaturesSection>
-        <h2>Key Features</h2>
-        <FeatureList>
+        <FeaturesSection>
+          <h2>Key Features</h2>
+          <FeatureList>
           <li><strong>Contact Information:</strong> Easily store and manage project contacts.</li>
           <li><strong>Project Description:</strong> Keep detailed descriptions and objectives.</li>
           <li><strong>Time Tracking:</strong> Monitor time spent on tasks for productivity analysis.</li>
@@ -120,17 +112,17 @@ const Mapr = () => {
           <li><strong>Calendar:</strong> View project timelines and deadlines.</li>
           <li><strong>Calculators:</strong> Access essential tools like the Norwegian Cable Calculator.</li>
         </FeatureList>
-      </FeaturesSection>
+        </FeaturesSection>
 
-      <TestimonialsSection>
-        <h2>What Our Users Say</h2>
-        <blockquote>
-          "Clearly made by a tradesman! Convenient, easy to use, and keeps getting better with every update. It's free - doesn't get much better."
-        </blockquote>
-        <p>- A Satisfied User</p>
-      </TestimonialsSection>
+        <TestimonialsSection>
+          <h2>What Our Users Say</h2>
+          <blockquote>
+            "Clearly made by a tradesman! Convenient, easy to use, and keeps getting better with every update. It's free - doesn't get much better."
+          </blockquote>
+          <p>- A Satisfied User</p>
+        </TestimonialsSection>
 
-      <Footer>
+        <Footer>
           <p>© 2024 Mapr. All rights reserved.</p>
         </Footer>
       </Landing>
