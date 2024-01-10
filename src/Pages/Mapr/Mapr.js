@@ -135,14 +135,7 @@ const Mapr = () => {
         </IntroSection>
 
         <SliderSection>
-          <h2>App Screenshots</h2>
-          <Slider>
-            <Slide className="active">
-              <SlideImage src={MaprImage} alt="Screenshot 1" />
-              <SlideDescription>Description for Screenshot 1</SlideDescription>
-            </Slide>
-            {/* Add more <Slide> components for additional screenshots */}
-          </Slider>
+          
         </SliderSection>
 
         <FeaturesSection>
