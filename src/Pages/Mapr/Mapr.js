@@ -46,11 +46,11 @@ const Image = styled.img`
 `;
 
 const FeaturesSection = styled.section`
-  background-color: #f2b90c; // Mustard yellow background
-  color: #000;
+  background-color: #808000; // Olive green background
+  color: #fff; // Adjusted text color for better readability
   padding: 20px;
   margin-top: 20px;
-  border-radius: 0; // Removed rounded borders
+  border-radius: 0;
 `;
 
 const FeatureList = styled.ul`
@@ -61,11 +61,11 @@ const FeatureList = styled.ul`
   li {
     margin-bottom: 15px;
     font-size: 16px;
-    border-bottom: 1px solid #333; // Adding a subtle border for each item
+    border-bottom: 1px solid #fff; // Subtle border in a lighter color
     padding-bottom: 10px;
 
     &:last-child {
-      border-bottom: none; // No border for the last item
+      border-bottom: none;
     }
   }
 `;
