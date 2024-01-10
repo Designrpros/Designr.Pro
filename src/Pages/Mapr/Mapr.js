@@ -46,8 +46,8 @@ const Image = styled.img`
 `;
 
 const FeaturesSection = styled.section`
-  background-color: #808000; // Olive green background
-  color: #fff; // Adjusted text color for better readability
+  background-color: #7d7d7d; // Retro gray background
+  color: #fff; // White text for better readability
   padding: 20px;
   margin-top: 20px;
   border-radius: 0;
@@ -61,7 +61,7 @@ const FeatureList = styled.ul`
   li {
     margin-bottom: 15px;
     font-size: 16px;
-    border-bottom: 1px solid #fff; // Subtle border in a lighter color
+    border-bottom: 1px solid #eaeaea; // Light gray border for each item
     padding-bottom: 10px;
 
     &:last-child {
