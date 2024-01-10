@@ -132,7 +132,7 @@ const Sidebar = ({ isOpen, toggleSidebar, handleLoginClick }) => {
         <br />
         <li><Link to="/blog" onClick={toggleSidebar}><FaNotesMedical />  Blog</Link></li>
         <li><Link to="/sketch" onClick={toggleSidebar}><FaNotesMedical />  Sketch</Link></li>
-        <li><Link to="/mindnode" onClick={toggleSidebar}><FaNotesMedical />  MindNode</Link></li>
+        <li><Link to="/mapr" onClick={toggleSidebar}><FaNotesMedical />  Mapr</Link></li>
         <br />
         <li><Link to="/dimension" onClick={toggleSidebar}><FaNotesMedical />  Dimension</Link></li>
       </List>

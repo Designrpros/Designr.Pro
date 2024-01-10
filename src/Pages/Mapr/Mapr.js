@@ -1,23 +1,74 @@
 import React from 'react';
+import styled from 'styled-components';
 import MaprImage from './MaprImage.png';
+
+const Landing = styled.div`
+  text-align: center;
+  padding: 20px;
+`;
+
+const Header = styled.header`
+  background-color: #f8f9fa;
+  padding: 20px 0;
+`;
+
+const Title = styled.h1`
+  color: #333;
+`;
+
+const IntroSection = styled.section`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20px;
+
+  @media (min-width: 768px) {
+    flex-direction: row;
+  }
+`;
+
+const Image = styled.img`
+  width: 100%;
+  max-width: 400px;
+  margin-bottom: 20px;
+
+  @media (min-width: 768px) {
+    margin-right: 20px;
+  }
+`;
+
+const FeaturesSection = styled.section`
+  text-align: left;
+`;
+
+const TestimonialsSection = styled.section`
+  background-color: #e9ecef;
+  padding: 20px 0;
+`;
+
+const Footer = styled.footer`
+  background-color: #343a40;
+  color: white;
+  padding: 10px 0;
+`;
 
 const Mapr = () => {
   return (
-    <div className="mapr-landing">
-      <header className="mapr-header">
-        <h1>Mapr - Project Management, Redefined</h1>
+    <Landing>
+      <Header>
+        <Title>Mapr - Project Management, Redefined</Title>
         <p>Revolutionizing project management for Tradesmen with a map-based interface.</p>
-      </header>
+      </Header>
 
-      <section className="mapr-intro">
-        <img src={MaprImage} alt="Mapr Screenshot" />
+      <IntroSection>
+        <Image src={MaprImage} alt="Mapr Screenshot" />
         <div>
           <h2>Visualize Your Projects Geographically</h2>
           <p>Mapr offers a unique, map-based interface to manage projects across multiple sites, providing a spatial context to your project management.</p>
         </div>
-      </section>
+      </IntroSection>
 
-      <section className="mapr-features">
+      <FeaturesSection>
         <h2>Key Features</h2>
         <ul>
           <li><strong>Contact Information:</strong> Easily store and manage project contacts.</li>
@@ -32,25 +83,20 @@ const Mapr = () => {
           <li><strong>Calendar:</strong> View project timelines and deadlines.</li>
           <li><strong>Calculators:</strong> Access essential tools like the Norwegian Cable Calculator.</li>
         </ul>
-      </section>
+      </FeaturesSection>
 
-      <section className="mapr-testimonials">
+      <TestimonialsSection>
         <h2>What Our Users Say</h2>
         <blockquote>
           "Clearly made by a tradesman! Convenient, easy to use, and keeps getting better with every update. It's free - doesn't get much better."
         </blockquote>
         <p>- A Satisfied User</p>
-      </section>
+      </TestimonialsSection>
 
-      <section className="mapr-usage">
-        <h2>How to Use Mapr</h2>
-        <p>Create a project by searching for a location, pin it, and start managing with our comprehensive tools. Export your project details as a PDF for easy sharing and reporting.</p>
-      </section>
-
-      <footer className="mapr-footer">
+      <Footer>
         <p>© 2024 Mapr. All rights reserved.</p>
-      </footer>
-    </div>
+      </Footer>
+    </Landing>
   );
 };
 
