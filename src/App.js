@@ -42,7 +42,19 @@ const Background1 = styled.div`
   background-attachment: fixed;
 `;
 
+const AppAdsTxt = () => {
+  // Fetch and display the contents of app-ads.txt
+  // This is a simple example. You might want to handle errors or loading states as needed.
+  const [content, setContent] = React.useState('');
 
+  React.useEffect(() => {
+    fetch('/app-ads.txt')
+      .then(response => response.text())
+      .then(data => setContent(data));
+  }, []);
+
+  return <pre>{content}</pre>;
+};
 
 const App = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -104,6 +116,7 @@ const App = () => {
   <Route path="/mindnode" element={<MindNode />} />
   <Route path="/sketch" element={<Sketch />} />
   <Route path="/Dimension" element={<Dimension />} />
+  <Route path="/app-ads.txt" element={<AppAdsTxt />} />
 </Routes>
 
 
