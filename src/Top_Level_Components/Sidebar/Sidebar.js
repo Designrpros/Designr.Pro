@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
 import { Link as RouterLink } from 'react-router-dom';
-import { FaHome, FaEnvelope, FaUserCircle, FaNotesMedical } from 'react-icons/fa';
+//import { FaHome, FaEnvelope, FaUserCircle, FaNotesMedical } from 'react-icons/fa';
 import { BsFillPersonFill } from 'react-icons/bs';
 import { auth } from '../../FirebaseSDK.js'; 
 
@@ -124,17 +124,17 @@ const Sidebar = ({ isOpen, toggleSidebar, handleLoginClick }) => {
 
 
       <List>
-        <li><Link to="/" onClick={toggleSidebar}><FaHome /> Home</Link></li>
-        <li><Link to="/About/designrpro" onClick={toggleSidebar}><BsFillPersonFill />  About</Link></li>
-        <li><Link to="/contact" onClick={toggleSidebar}><FaEnvelope />  Contact</Link></li>
+        <li><Link to="/" onClick={toggleSidebar}> Home</Link></li>
+        <li><Link to="/About/designrpro" onClick={toggleSidebar}>  About</Link></li>
+        <li><Link to="/contact" onClick={toggleSidebar}>  Contact</Link></li>
         <br />
-        <li><Link to="/nomad" onClick={toggleSidebar}><FaNotesMedical />  Nomad</Link></li>
+        <li><Link to="/nomad" onClick={toggleSidebar}> Nomad</Link></li>
         <br />
-        <li><Link to="/blog" onClick={toggleSidebar}><FaNotesMedical />  Blog</Link></li>
-        <li><Link to="/sketch" onClick={toggleSidebar}><FaNotesMedical />  Sketch</Link></li>
-        <li><Link to="/mapr" onClick={toggleSidebar}><FaNotesMedical />  Mapr</Link></li>
+        <li><Link to="/blog" onClick={toggleSidebar}>  Blog</Link></li>
+        <li><Link to="/maprLandingPage" onClick={toggleSidebar}> Mapr</Link></li>
+        <li><Link to="/mapr" onClick={toggleSidebar}>  Mapr</Link></li>
         <br />
-        <li><Link to="/dimension" onClick={toggleSidebar}><FaNotesMedical />  Dimension</Link></li>
+        <li><Link to="/dimension" onClick={toggleSidebar}> Dimension</Link></li>
       </List>
     </Aside>
     </>
