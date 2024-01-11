@@ -59,10 +59,9 @@ const FeaturesSection = styled.section`
 `;
 
 const FeatureGroup = styled.div`
-  background-color: #fff;
   padding: 20px;
   border-radius: 5px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border: 2;
 `;
 
 const GroupTitle = styled.h3`
@@ -132,82 +131,80 @@ const Mapr = () => {
         <ImageSection />
 
         <FeaturesSection>
-  <FeatureGroupGrid>
-    <FeatureGroup>
-      <GroupTitle>All Project Map View</GroupTitle>
-      <FeatureImage src={Fist} alt="Map View" />
-      <ul>
-        <FeatureBullet>Project Overview</FeatureBullet>
-        <FeatureBullet>Nearby stores</FeatureBullet>
-        <FeatureBullet>Time estimate</FeatureBullet>
-        <FeatureBullet>Get directions</FeatureBullet>
-      </ul>
-    </FeatureGroup>
+          <FeatureGroup>
+            <GroupTitle>All Project Map View</GroupTitle>
+            <FeatureImage src={MapViewImage} alt="Map View" />
+            <ul>
+              <FeatureBullet><img src={Fist} alt=""/>Project Overview</FeatureBullet>
+              <FeatureBullet><img src={Fist} alt=""/>Nearby stores</FeatureBullet>
+              <FeatureBullet><img src={Fist} alt=""/>Time estimate</FeatureBullet>
+              <FeatureBullet><img src={Fist} alt=""/>Get directions</FeatureBullet>
+            </ul>
+          </FeatureGroup>
 
-    <FeatureGroup>
-      <GroupTitle>Project Management</GroupTitle>
-      <FeatureImage src={Fist} alt="Project Management" />
-      <ul>
-        <FeatureBullet>Contact information</FeatureBullet>
-        <FeatureBullet>Participants</FeatureBullet>
-        <FeatureBullet>Project description</FeatureBullet>
-        <FeatureBullet>Storage</FeatureBullet>
-        <FeatureBullet>Gallery</FeatureBullet>
-        <FeatureBullet>Time Tracker</FeatureBullet>
-        <FeatureBullet>Materials Management</FeatureBullet>
-        <FeatureBullet>Checklists</FeatureBullet>
-        <FeatureBullet>Project Summary and save as PDF</FeatureBullet>
-      </ul>
-    </FeatureGroup>
+          <FeatureGroup>
+            <GroupTitle>Project Management</GroupTitle>
+            <FeatureImage src={ProjectManagementImage} alt="Project Management" />
+            <ul>
+              <FeatureBullet><img src={Fist} alt=""/>Contact information</FeatureBullet>
+              <FeatureBullet><img src={Fist} alt=""/>Participants</FeatureBullet>
+              <FeatureBullet><img src={Fist} alt=""/>Project description</FeatureBullet>
+              <FeatureBullet><img src={Fist} alt=""/>Storage</FeatureBullet>
+              <FeatureBullet><img src={Fist} alt=""/>Gallery</FeatureBullet>
+              <FeatureBullet><img src={Fist} alt=""/>Time Tracker</FeatureBullet>
+              <FeatureBullet><img src={Fist} alt=""/>Materials Management</FeatureBullet>
+              <FeatureBullet><img src={Fist} alt=""/>Checklists</FeatureBullet>
+              <FeatureBullet><img src={Fist} alt=""/>Project Summary and save as PDF</FeatureBullet>
+            </ul>
+          </FeatureGroup>
 
-    <FeatureGroup>
-      <GroupTitle>Contacts Information</GroupTitle>
-      <FeatureImage src={Fist} alt="Contacts Information" />
-      <ul>
-        <FeatureBullet>View all contacts in its own tab</FeatureBullet>
-        <FeatureBullet>Call, message, mail, get directions</FeatureBullet>
-        <FeatureBullet>Sync contacts locally to Apple contacts</FeatureBullet>
-      </ul>
-    </FeatureGroup>
+          <FeatureGroup>
+            <GroupTitle>Contacts Information</GroupTitle>
+            <FeatureImage src={ContactsImage} alt="Contacts Information" />
+            <ul>
+              <FeatureBullet><img src={Fist} alt=""/>View all contacts in its own tab</FeatureBullet>
+              <FeatureBullet><img src={Fist} alt=""/>Call, message, mail, get directions</FeatureBullet>
+              <FeatureBullet><img src={Fist} alt=""/>Sync contacts locally to Apple contacts</FeatureBullet>
+            </ul>
+          </FeatureGroup>
 
-    <FeatureGroup>
-      <GroupTitle>Custom Checklist</GroupTitle>
-      <FeatureImage src={Fist} alt="Custom Checklist" />
-      <ul>
-        <FeatureBullet>Create custom checklists and import into a project</FeatureBullet>
-      </ul>
-    </FeatureGroup>
+          <FeatureGroup>
+            <GroupTitle>Custom Checklist</GroupTitle>
+            <FeatureImage src={ChecklistImage} alt="Custom Checklist" />
+            <ul>
+              <FeatureBullet><img src={Fist} alt=""/>Create custom checklists and import into a project</FeatureBullet>
+            </ul>
+          </FeatureGroup>
 
-    <FeatureGroup>
-      <GroupTitle>Calendar</GroupTitle>
-      <FeatureImage src={Fist} alt="Calendar" />
-      <ul>
-        <FeatureBullet>View Each day</FeatureBullet>
-        <FeatureBullet>View the entire month</FeatureBullet>
-        <FeatureBullet>Sync calendar to Apple Calendar</FeatureBullet>
-      </ul>
-    </FeatureGroup>
+          <FeatureGroup>
+            <GroupTitle>Calendar</GroupTitle>
+            <FeatureImage src={CalendarImage} alt="Calendar" />
+            <ul>
+              <FeatureBullet><img src={Fist} alt=""/>View Each day</FeatureBullet>
+              <FeatureBullet><img src={Fist} alt=""/>View the entire month</FeatureBullet>
+              <FeatureBullet><img src={Fist} alt=""/>Sync calendar to Apple Calendar</FeatureBullet>
+            </ul>
+          </FeatureGroup>
 
-    <FeatureGroup>
-      <GroupTitle>Calculators</GroupTitle>
-      <FeatureImage src={Fist} alt="Calculators" />
-      <ul>
-        <FeatureBullet>Heating Cable Calculator</FeatureBullet>
-        <FeatureBullet>Ohms Law Calculator</FeatureBullet>
-        <FeatureBullet>Voltage Drop Calculator</FeatureBullet>
-        <FeatureBullet>Diagonal Calculator</FeatureBullet>
-        <FeatureBullet>Right Angle Triangle Calculator</FeatureBullet>
-        <FeatureBullet>Staircase Calculator</FeatureBullet>
-        <FeatureBullet>Pipe Flow Rate Calculator</FeatureBullet>
-        <FeatureBullet>Water Pressure Drop Calculator</FeatureBullet>
-        <FeatureBullet>Concrete Calculator</FeatureBullet>
-        <FeatureBullet>Tiling Calculator</FeatureBullet>
-        <FeatureBullet>Paint Calculator</FeatureBullet>
-        <FeatureBullet>Wallpaper Calculator</FeatureBullet>
-      </ul>
-    </FeatureGroup>
-  </FeatureGroupGrid>
-</FeaturesSection>
+          <FeatureGroup>
+            <GroupTitle>Calculators</GroupTitle>
+            <FeatureImage src={CalculatorsImage} alt="Calculators" />
+            <ul>
+              <FeatureBullet><img src={Fist} alt=""/>Heating Cable Calculator</FeatureBullet>
+              <FeatureBullet><img src={Fist} alt=""/>Ohms Law Calculator</FeatureBullet>
+              <FeatureBullet><img src={Fist} alt=""/>Voltage Drop Calculator</FeatureBullet>
+              <FeatureBullet><img src={Fist} alt=""/>Diagonal Calculator</FeatureBullet>
+              <FeatureBullet><img src={Fist} alt=""/>Right Angle Triangle Calculator</FeatureBullet>
+              <FeatureBullet><img src={Fist} alt=""/>Staircase Calculator</FeatureBullet>
+              <FeatureBullet><img src={Fist} alt=""/>Pipe Flow Rate Calculator</FeatureBullet>
+              <FeatureBullet><img src={Fist} alt=""/>Water Pressure Drop Calculator</FeatureBullet>
+              <FeatureBullet><img src={Fist} alt=""/>Concrete Calculator</FeatureBullet>
+              <FeatureBullet><img src={Fist} alt=""/>Tiling Calculator</FeatureBullet>
+              <FeatureBullet><img src={Fist} alt=""/>Paint Calculator</FeatureBullet>
+              <FeatureBullet><img src={Fist} alt=""/>Wallpaper Calculator</FeatureBullet>
+            </ul>
+          </FeatureGroup>
+        </FeaturesSection>
 
 
         <TestimonialsSection>
