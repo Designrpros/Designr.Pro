@@ -122,8 +122,24 @@ const SlideImage = styled.img`
 const SlideDescription = styled.p`
   margin-top: 15px;
 `;
+  
 
 const Mapr = () => {
+  const [activeSlide, setActiveSlide] = useState(0);
+  const slides = [
+    { src: Fist, description: "Logo" },
+    { src: Fist, description: "Another View" },
+    // Add more slides as needed
+  ];
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setActiveSlide((currentSlide) => (currentSlide + 1) % slides.length);
+    }, 3000); // Change slide every 3 seconds
+
+    return () => clearInterval(interval);
+  }, [slides.length]);
+
   return (
     <>
       <GlobalStyle />
@@ -144,14 +160,12 @@ const Mapr = () => {
 
         <SliderSection>
           <Slider>
-            <Slide className="active">
-              <SlideImage src={Fist} alt="Screenshot 1" />
-              <SlideDescription>Logo</SlideDescription>
-            </Slide>
-            <Slide className="active">
-              <SlideImage src={Fist} alt="Screenshot 1" />
-              <SlideDescription>Logo</SlideDescription>
-            </Slide>
+            {slides.map((slide, index) => (
+              <Slide key={index} className={index === activeSlide ? "active" : ""}>
+                <SlideImage src={slide.src} alt={`Screenshot ${index + 1}`} />
+                <SlideDescription>{slide.description}</SlideDescription>
+              </Slide>
+            ))}
           </Slider>
         </SliderSection>
 
