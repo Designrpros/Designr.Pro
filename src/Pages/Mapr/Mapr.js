@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import styled, { createGlobalStyle } from 'styled-components';
 import MaprImage from './MaprImage.jpeg';
 import Fist from './Fist.png';
@@ -48,28 +48,10 @@ const Image = styled.img`
 `;
 
 const FeaturesSection = styled.section`
-  background-color: #7d7d7d; // Retro gray background
-  color: #fff; // White text for better readability
+  background-color: #f0e4d7; // Light vintage background for the entire section
+  color: #333; // Dark text for readability
   padding: 20px;
   margin-top: 20px;
-  border-radius: 0;
-`;
-
-const FeatureList = styled.ul`
-  list-style: none;
-  padding: 0;
-  text-align: left;
-
-  li {
-    margin-bottom: 15px;
-    font-size: 16px;
-    border-bottom: 1px solid #eaeaea; // Light gray border for each item
-    padding-bottom: 10px;
-
-    &:last-child {
-      border-bottom: none;
-    }
-  }
 `;
 
 const TestimonialsSection = styled.section`
@@ -93,58 +75,25 @@ const ImageSection = styled.section`
   padding: 40px 20px;
   text-align: center;
 `;
-  
-const FeatureItem = styled.div`
-  display: flex;
-  align-items: center;
-  margin-bottom: 20px;
-  color: #fff;
 
-  &:nth-child(odd) {
-    background-color: #6b8e23; // Olive green for odd items
-  }
-
-  &:nth-child(even) {
-    background-color: #8b4513; // Saddle brown for even items
-  }
-
-  @media (max-width: 768px) {
-    flex-direction: column;
-    text-align: center;
-  }
+const FeatureGroup = styled.div`
+  background-color: #f0e4d7; // Light vintage background
+  padding: 20px;
+  margin-top: 20px;
+  border: 1px solid #d3c1ae; // Light border for separation
 `;
 
-const FeatureImage = styled.img`
-  width: 80px;
-  height: 80px;
-  margin-right: 20px;
-  border-radius: 50%;
-
-  @media (max-width: 768px) {
-    margin-bottom: 10px;
-  }
+const GroupTitle = styled.h3`
+  color: #6b8e23; // Olive green title
+  margin-bottom: 10px;
 `;
 
-const FeatureText = styled.div`
-  flex: 1;
+const FeatureBullet = styled.li`
+  margin-bottom: 10px;
+  font-size: 16px;
 `;
 
-const Mapr = () => {
-
-  const features = [
-    { img: Fist, title: "Contact Information", desc: "Easily store and manage project contacts." },
-    { img: Fist, title: "Project Description", desc: "Keep detailed descriptions and objectives." },
-    { img: Fist, title: "Time Tracking", desc: "Monitor time spent on tasks for productivity analysis." },
-    { img: Fist, title: "Materials Management", desc: "Track and budget project materials." },
-    { img: Fist, title: "Task Checklist", desc: "Ensure all project tasks are completed." },
-    { img: Fist, title: "Project Summary", desc: "Quick snapshot of project status." },
-    { img: Fist, title: "Participants", desc: "Add team members to projects." },
-    { img: Fist, title: "Nearby Stores", desc: "Find local suppliers for essential materials." },
-    { img: Fist, title: "Custom Checklists", desc: "Tailor checklists to your project needs." },
-    { img: Fist, title: "Calendar", desc: "View project timelines and deadlines." },
-    { img: Fist, title: "Calculators", desc: "Access essential tools like the Norwegian Cable Calculator." }
-  ];
-  
+const Mapr = () => {  
 
   return (
     <>
@@ -166,14 +115,67 @@ const Mapr = () => {
 
         <FeaturesSection>
           <h2>Key Features</h2>
-          {features.map((feature, index) => (
-            <FeatureItem key={index}>
-              <FeatureImage src={feature.img} alt={feature.title} />
-              <FeatureText>
-                <strong>{feature.title}:</strong> {feature.desc}
-              </FeatureText>
-            </FeatureItem>
-          ))}
+          
+          <FeatureGroup>
+            <GroupTitle>All Project Map View</GroupTitle>
+            <ul>
+              <FeatureBullet>Project Overview</FeatureBullet>
+              <FeatureBullet>Nearby stores</FeatureBullet>
+              <FeatureBullet>Time estimate</FeatureBullet>
+              <FeatureBullet>Get directions</FeatureBullet>
+            </ul>
+          </FeatureGroup>
+
+          <FeatureGroup>
+            <GroupTitle>Project Management</GroupTitle>
+            <ul>
+              <FeatureBullet>Contact information</FeatureBullet>
+              <FeatureBullet>Participants</FeatureBullet>
+              <FeatureBullet>Project description</FeatureBullet>
+              <FeatureBullet>Storage</FeatureBullet>
+              <FeatureBullet>Gallery</FeatureBullet>
+              <FeatureBullet>Time Tracker</FeatureBullet>
+              <FeatureBullet>Materials Management</FeatureBullet>
+              <FeatureBullet>Checklists</FeatureBullet>
+              <FeatureBullet>Project Summary and save as PDF</FeatureBullet>
+            </ul>
+          </FeatureGroup>
+
+          <FeatureGroup>
+            <GroupTitle>Contacts Information</GroupTitle>
+            <ul>
+              <FeatureBullet>View all contacts in its own tab</FeatureBullet>
+              <FeatureBullet>Call, message, mail, get directions</FeatureBullet>
+              <FeatureBullet>Sync contacts locally to Apple contacts</FeatureBullet>
+            </ul>
+          </FeatureGroup>
+
+          <FeatureGroup>
+            <GroupTitle>Custom Checklist</GroupTitle>
+            <ul>
+              <FeatureBullet>Create custom checklists and import into a project</FeatureBullet>
+            </ul>
+          </FeatureGroup>
+
+          <FeatureGroup>
+            <GroupTitle>Calendar</GroupTitle>
+            <ul>
+              <FeatureBullet>View Each day</FeatureBullet>
+              <FeatureBullet>View the entire month</FeatureBullet>
+              <FeatureBullet>Sync calendar to Apple Calendar</FeatureBullet>
+            </ul>
+          </FeatureGroup>
+
+          <FeatureGroup>
+            <GroupTitle>Calculators</GroupTitle>
+            <ul>
+              <FeatureBullet>Heating Cable Calculator</FeatureBullet>
+              <FeatureBullet>Ohms Law Calculator</FeatureBullet>
+              <FeatureBullet>Voltage Drop Calculator</FeatureBullet>
+              {/* ... more calculator features ... */}
+            </ul>
+          </FeatureGroup>
+
         </FeaturesSection>
 
         <TestimonialsSection>
