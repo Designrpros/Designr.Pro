@@ -77,7 +77,7 @@ const FeatureBullet = styled.li`
   align-items: center;
 
   img {
-    width: 30px;
+    width: 15px;
     margin-right: 10px;
   }
 `;
