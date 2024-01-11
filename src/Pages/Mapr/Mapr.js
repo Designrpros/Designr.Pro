@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import styled, { createGlobalStyle } from 'styled-components';
 import MaprImage from './MaprImage.jpeg';
 import Fist from './Fist.png';
