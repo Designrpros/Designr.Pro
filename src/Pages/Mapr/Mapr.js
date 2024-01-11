@@ -1,6 +1,8 @@
 import React from 'react';
 import styled, { createGlobalStyle } from 'styled-components';
 import MaprImage from './MaprImage.jpeg';
+import Fist from './Fist.png';
+
 
 const GlobalStyle = createGlobalStyle`
   body {
@@ -83,12 +85,16 @@ const Footer = styled.footer`
   padding: 20px 0;
   margin-top: 30px;
 `;
-
-
-const SliderSection = styled.section`
+const ImageSection = styled.section`
   background-image: url(${MaprImage});
   background-size: cover;
   background-position: center;
+  color: #fff;
+  padding: 40px 20px;
+  text-align: center;
+`;
+
+const SliderSection = styled.section`
   color: #fff;
   padding: 40px 20px;
   text-align: center;
@@ -133,9 +139,17 @@ const Mapr = () => {
             <p>Mapr offers a unique, map-based interface to manage projects across multiple sites, providing a spatial context to your project management.</p>
           </div>
         </IntroSection>
+        <ImageSection>
+        </ImageSection>
 
         <SliderSection>
-          
+          <Slider>
+            <Slide className="active">
+              <SlideImage src={Fist} alt="Screenshot 1" />
+              <SlideDescription>Logo</SlideDescription>
+            </Slide>
+            {/* Add more <Slide> components for additional screenshots */}
+          </Slider>
         </SliderSection>
 
         <FeaturesSection>
