@@ -148,7 +148,10 @@ const Mapr = () => {
               <SlideImage src={Fist} alt="Screenshot 1" />
               <SlideDescription>Logo</SlideDescription>
             </Slide>
-            {/* Add more <Slide> components for additional screenshots */}
+            <Slide className="active">
+              <SlideImage src={Fist} alt="Screenshot 1" />
+              <SlideDescription>Logo</SlideDescription>
+            </Slide>
           </Slider>
         </SliderSection>
 
