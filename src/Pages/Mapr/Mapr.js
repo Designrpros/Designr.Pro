@@ -3,6 +3,13 @@ import styled, { createGlobalStyle } from 'styled-components';
 import MaprImage from './MaprImage.jpeg';
 import Fist from './Fist.png'; // Placeholder for feature icons
 
+import MapViewImage from './MapViewImage.png';
+import ProjectManagementImage from './ProjectManagementImage.png';
+import ContactsImage from './ContactsImage.png';
+import ChecklistImage from './ChecklistImage.png';
+import CalendarImage from './CalendarImage.png';
+import CalculatorsImage from './CalculatorsImage.png';
+
 const GlobalStyle = createGlobalStyle`
   body {
     margin: 0;
