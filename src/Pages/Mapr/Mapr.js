@@ -1,14 +1,13 @@
 import React from 'react';
 import styled, { createGlobalStyle } from 'styled-components';
 import MaprImage from './MaprImage.jpeg';
-import Fist from './Fist.png';
-
+import Fist from './Fist.png'; // Placeholder for feature icons
 
 const GlobalStyle = createGlobalStyle`
   body {
     margin: 0;
-    font-family: 'Courier New', Courier, monospace; // Retro-style font
-    background-color: #f0e4d7; // Vintage paper-like background color
+    font-family: 'Courier New', Courier, monospace;
+    background-color: #f0e4d7;
   }
 `;
 
@@ -18,10 +17,10 @@ const Landing = styled.div`
 `;
 
 const Header = styled.header`
-  background-color: #008080; // Teal, popular in vintage designs
+  background-color: #008080;
   color: #fff;
   padding: 20px 0;
-  border-bottom: 5px solid #f2b90c; // Mustard yellow border
+  border-bottom: 5px solid #f2b90c;
 `;
 
 const Title = styled.h1`
@@ -34,39 +33,12 @@ const Subtitle = styled.p`
 `;
 
 const IntroSection = styled.section`
-  background-color: #ff7e67; // Soft red, typical of the 60s-80s
+  background-color: #ff7e67;
   color: #fff;
   padding: 20px;
   margin-top: 20px;
 `;
 
-const Image = styled.img`
-  width: 100%;
-  max-width: 400px;
-  margin-bottom: 20px;
-  border: 5px solid #fff; // White border for the image
-`;
-
-const FeaturesSection = styled.section`
-  background-color: #f0e4d7; // Light vintage background for the entire section
-  color: #333; // Dark text for readability
-  padding: 20px;
-  margin-top: 20px;
-`;
-
-const TestimonialsSection = styled.section`
-  background-color: #008080; // Teal background
-  color: #fff;
-  padding: 20px 0;
-  margin-top: 20px;
-`;
-
-const Footer = styled.footer`
-  background-color: #333; // Dark footer for contrast
-  color: white;
-  padding: 20px 0;
-  margin-top: 30px;
-`;
 const ImageSection = styled.section`
   background-image: url(${MaprImage});
   background-size: cover;
@@ -76,25 +48,55 @@ const ImageSection = styled.section`
   text-align: center;
 `;
 
-const FeatureGroup = styled.div`
-  background-color: #f0e4d7; // Light vintage background
+const FeaturesSection = styled.section`
+  background-color: #f0e4d7;
+  color: #333;
   padding: 20px;
   margin-top: 20px;
-  border: 1px solid #d3c1ae; // Light border for separation
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+`;
+
+const FeatureGroup = styled.div`
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 `;
 
 const GroupTitle = styled.h3`
-  color: #6b8e23; // Olive green title
+  color: #6b8e23;
   margin-bottom: 10px;
 `;
 
 const FeatureBullet = styled.li`
   margin-bottom: 10px;
   font-size: 16px;
+  display: flex;
+  align-items: center;
+
+  img {
+    width: 30px;
+    margin-right: 10px;
+  }
 `;
 
-const Mapr = () => {  
+const TestimonialsSection = styled.section`
+  background-color: #008080;
+  color: #fff;
+  padding: 20px 0;
+  margin-top: 20px;
+`;
 
+const Footer = styled.footer`
+  background-color: #333;
+  color: white;
+  padding: 20px 0;
+  margin-top: 30px;
+`;
+
+const Mapr = () => {
   return (
     <>
       <GlobalStyle />
@@ -110,73 +112,78 @@ const Mapr = () => {
             <p>Mapr offers a unique, map-based interface to manage projects across multiple sites, providing a spatial context to your project management.</p>
           </div>
         </IntroSection>
-        <ImageSection>
-        </ImageSection>
+
+        <ImageSection />
 
         <FeaturesSection>
-          <h2>Key Features</h2>
-          
-          <FeatureGroup>
-            <GroupTitle>All Project Map View</GroupTitle>
-            <ul>
-              <FeatureBullet>Project Overview</FeatureBullet>
-              <FeatureBullet>Nearby stores</FeatureBullet>
-              <FeatureBullet>Time estimate</FeatureBullet>
-              <FeatureBullet>Get directions</FeatureBullet>
-            </ul>
-          </FeatureGroup>
+  <FeatureGroup>
+    <GroupTitle>All Project Map View</GroupTitle>
+    <ul>
+      <FeatureBullet><img src={Fist} alt=""/>Project Overview</FeatureBullet>
+      <FeatureBullet><img src={Fist} alt=""/>Nearby stores</FeatureBullet>
+      <FeatureBullet><img src={Fist} alt=""/>Time estimate</FeatureBullet>
+      <FeatureBullet><img src={Fist} alt=""/>Get directions</FeatureBullet>
+    </ul>
+  </FeatureGroup>
 
-          <FeatureGroup>
-            <GroupTitle>Project Management</GroupTitle>
-            <ul>
-              <FeatureBullet>Contact information</FeatureBullet>
-              <FeatureBullet>Participants</FeatureBullet>
-              <FeatureBullet>Project description</FeatureBullet>
-              <FeatureBullet>Storage</FeatureBullet>
-              <FeatureBullet>Gallery</FeatureBullet>
-              <FeatureBullet>Time Tracker</FeatureBullet>
-              <FeatureBullet>Materials Management</FeatureBullet>
-              <FeatureBullet>Checklists</FeatureBullet>
-              <FeatureBullet>Project Summary and save as PDF</FeatureBullet>
-            </ul>
-          </FeatureGroup>
+  <FeatureGroup>
+    <GroupTitle>Project Management</GroupTitle>
+    <ul>
+      <FeatureBullet><img src={Fist} alt=""/>Contact information</FeatureBullet>
+      <FeatureBullet><img src={Fist} alt=""/>Participants</FeatureBullet>
+      <FeatureBullet><img src={Fist} alt=""/>Project description</FeatureBullet>
+      <FeatureBullet><img src={Fist} alt=""/>Storage</FeatureBullet>
+      <FeatureBullet><img src={Fist} alt=""/>Gallery</FeatureBullet>
+      <FeatureBullet><img src={Fist} alt=""/>Time Tracker</FeatureBullet>
+      <FeatureBullet><img src={Fist} alt=""/>Materials Management</FeatureBullet>
+      <FeatureBullet><img src={Fist} alt=""/>Checklists</FeatureBullet>
+      <FeatureBullet><img src={Fist} alt=""/>Project Summary and save as PDF</FeatureBullet>
+    </ul>
+  </FeatureGroup>
 
-          <FeatureGroup>
-            <GroupTitle>Contacts Information</GroupTitle>
-            <ul>
-              <FeatureBullet>View all contacts in its own tab</FeatureBullet>
-              <FeatureBullet>Call, message, mail, get directions</FeatureBullet>
-              <FeatureBullet>Sync contacts locally to Apple contacts</FeatureBullet>
-            </ul>
-          </FeatureGroup>
+  <FeatureGroup>
+    <GroupTitle>Contacts Information</GroupTitle>
+    <ul>
+      <FeatureBullet><img src={Fist} alt=""/>View all contacts in its own tab</FeatureBullet>
+      <FeatureBullet><img src={Fist} alt=""/>Call, message, mail, get directions</FeatureBullet>
+      <FeatureBullet><img src={Fist} alt=""/>Sync contacts locally to Apple contacts</FeatureBullet>
+    </ul>
+  </FeatureGroup>
 
-          <FeatureGroup>
-            <GroupTitle>Custom Checklist</GroupTitle>
-            <ul>
-              <FeatureBullet>Create custom checklists and import into a project</FeatureBullet>
-            </ul>
-          </FeatureGroup>
+  <FeatureGroup>
+    <GroupTitle>Custom Checklist</GroupTitle>
+    <ul>
+      <FeatureBullet><img src={Fist} alt=""/>Create custom checklists and import into a project</FeatureBullet>
+    </ul>
+  </FeatureGroup>
 
-          <FeatureGroup>
-            <GroupTitle>Calendar</GroupTitle>
-            <ul>
-              <FeatureBullet>View Each day</FeatureBullet>
-              <FeatureBullet>View the entire month</FeatureBullet>
-              <FeatureBullet>Sync calendar to Apple Calendar</FeatureBullet>
-            </ul>
-          </FeatureGroup>
+  <FeatureGroup>
+    <GroupTitle>Calendar</GroupTitle>
+    <ul>
+      <FeatureBullet><img src={Fist} alt=""/>View Each day</FeatureBullet>
+      <FeatureBullet><img src={Fist} alt=""/>View the entire month</FeatureBullet>
+      <FeatureBullet><img src={Fist} alt=""/>Sync calendar to Apple Calendar</FeatureBullet>
+    </ul>
+  </FeatureGroup>
 
-          <FeatureGroup>
-            <GroupTitle>Calculators</GroupTitle>
-            <ul>
-              <FeatureBullet>Heating Cable Calculator</FeatureBullet>
-              <FeatureBullet>Ohms Law Calculator</FeatureBullet>
-              <FeatureBullet>Voltage Drop Calculator</FeatureBullet>
-              {/* ... more calculator features ... */}
-            </ul>
-          </FeatureGroup>
-
-        </FeaturesSection>
+  <FeatureGroup>
+    <GroupTitle>Calculators</GroupTitle>
+    <ul>
+      <FeatureBullet><img src={Fist} alt=""/>Heating Cable Calculator</FeatureBullet>
+      <FeatureBullet><img src={Fist} alt=""/>Ohms Law Calculator</FeatureBullet>
+      <FeatureBullet><img src={Fist} alt=""/>Voltage Drop Calculator</FeatureBullet>
+      <FeatureBullet><img src={Fist} alt=""/>Diagonal Calculator</FeatureBullet>
+      <FeatureBullet><img src={Fist} alt=""/>Right Angle Triangle Calculator</FeatureBullet>
+      <FeatureBullet><img src={Fist} alt=""/>Staircase Calculator</FeatureBullet>
+      <FeatureBullet><img src={Fist} alt=""/>Pipe Flow Rate Calculator</FeatureBullet>
+      <FeatureBullet><img src={Fist} alt=""/>Water Pressure Drop Calculator</FeatureBullet>
+      <FeatureBullet><img src={Fist} alt=""/>Concrete Calculator</FeatureBullet>
+      <FeatureBullet><img src={Fist} alt=""/>Tiling Calculator</FeatureBullet>
+      <FeatureBullet><img src={Fist} alt=""/>Paint Calculator</FeatureBullet>
+      <FeatureBullet><img src={Fist} alt=""/>Wallpaper Calculator</FeatureBullet>
+    </ul>
+  </FeatureGroup>
+</FeaturesSection>
 
         <TestimonialsSection>
           <h2>What Our Users Say</h2>
