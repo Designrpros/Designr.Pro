@@ -93,52 +93,58 @@ const ImageSection = styled.section`
   padding: 40px 20px;
   text-align: center;
 `;
-
-const SliderSection = styled.section`
+  
+const FeatureItem = styled.div`
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
   color: #fff;
-  padding: 40px 20px;
-  text-align: center;
-`;
 
-const Slider = styled.div`
-  max-width: 600px;
-  margin: 0 auto;
-  position: relative;
-`;
+  &:nth-child(odd) {
+    background-color: #6b8e23; // Olive green for odd items
+  }
 
-const Slide = styled.div`
-  display: none;
+  &:nth-child(even) {
+    background-color: #8b4513; // Saddle brown for even items
+  }
 
-  &.active {
-    display: block;
+  @media (max-width: 768px) {
+    flex-direction: column;
+    text-align: center;
   }
 `;
 
-const SlideImage = styled.img`
-  width: 100%;
-  border-radius: 5px;
+const FeatureImage = styled.img`
+  width: 80px;
+  height: 80px;
+  margin-right: 20px;
+  border-radius: 50%;
+
+  @media (max-width: 768px) {
+    margin-bottom: 10px;
+  }
 `;
 
-const SlideDescription = styled.p`
-  margin-top: 15px;
+const FeatureText = styled.div`
+  flex: 1;
 `;
-  
 
 const Mapr = () => {
-  const [activeSlide, setActiveSlide] = useState(0);
-  const slides = [
-    { src: Fist, description: "Logo" },
-    { src: Fist, description: "Another View" },
-    // Add more slides as needed
+
+  const features = [
+    { img: Fist, title: "Contact Information", desc: "Easily store and manage project contacts." },
+    { img: Fist, title: "Project Description", desc: "Keep detailed descriptions and objectives." },
+    { img: Fist, title: "Time Tracking", desc: "Monitor time spent on tasks for productivity analysis." },
+    { img: Fist, title: "Materials Management", desc: "Track and budget project materials." },
+    { img: Fist, title: "Task Checklist", desc: "Ensure all project tasks are completed." },
+    { img: Fist, title: "Project Summary", desc: "Quick snapshot of project status." },
+    { img: Fist, title: "Participants", desc: "Add team members to projects." },
+    { img: Fist, title: "Nearby Stores", desc: "Find local suppliers for essential materials." },
+    { img: Fist, title: "Custom Checklists", desc: "Tailor checklists to your project needs." },
+    { img: Fist, title: "Calendar", desc: "View project timelines and deadlines." },
+    { img: Fist, title: "Calculators", desc: "Access essential tools like the Norwegian Cable Calculator." }
   ];
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setActiveSlide((currentSlide) => (currentSlide + 1) % slides.length);
-    }, 3000); // Change slide every 3 seconds
-
-    return () => clearInterval(interval);
-  }, [slides.length]);
+  
 
   return (
     <>
@@ -158,32 +164,16 @@ const Mapr = () => {
         <ImageSection>
         </ImageSection>
 
-        <SliderSection>
-          <Slider>
-            {slides.map((slide, index) => (
-              <Slide key={index} className={index === activeSlide ? "active" : ""}>
-                <SlideImage src={slide.src} alt={`Screenshot ${index + 1}`} />
-                <SlideDescription>{slide.description}</SlideDescription>
-              </Slide>
-            ))}
-          </Slider>
-        </SliderSection>
-
         <FeaturesSection>
           <h2>Key Features</h2>
-          <FeatureList>
-          <li><strong>Contact Information:</strong> Easily store and manage project contacts.</li>
-          <li><strong>Project Description:</strong> Keep detailed descriptions and objectives.</li>
-          <li><strong>Time Tracking:</strong> Monitor time spent on tasks for productivity analysis.</li>
-          <li><strong>Materials Management:</strong> Track and budget project materials.</li>
-          <li><strong>Task Checklist:</strong> Ensure all project tasks are completed.</li>
-          <li><strong>Project Summary:</strong> Quick snapshot of project status.</li>
-          <li><strong>Participants:</strong> Add team members to projects.</li>
-          <li><strong>Nearby Stores:</strong> Find local suppliers for essential materials.</li>
-          <li><strong>Custom Checklists:</strong> Tailor checklists to your project needs.</li>
-          <li><strong>Calendar:</strong> View project timelines and deadlines.</li>
-          <li><strong>Calculators:</strong> Access essential tools like the Norwegian Cable Calculator.</li>
-        </FeatureList>
+          {features.map((feature, index) => (
+            <FeatureItem key={index}>
+              <FeatureImage src={feature.img} alt={feature.title} />
+              <FeatureText>
+                <strong>{feature.title}:</strong> {feature.desc}
+              </FeatureText>
+            </FeatureItem>
+          ))}
         </FeaturesSection>
 
         <TestimonialsSection>
