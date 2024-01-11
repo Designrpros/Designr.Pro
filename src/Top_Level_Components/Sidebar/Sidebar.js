@@ -2,7 +2,8 @@ import React, { useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
 import { Link as RouterLink } from 'react-router-dom';
 //import { FaHome, FaEnvelope, FaUserCircle, FaNotesMedical } from 'react-icons/fa';
-import { BsFillPersonFill } from 'react-icons/bs';
+import { FaUserCircle } from 'react-icons/fa';
+
 import { auth } from '../../FirebaseSDK.js'; 
 
 const Overlay = styled.div`
